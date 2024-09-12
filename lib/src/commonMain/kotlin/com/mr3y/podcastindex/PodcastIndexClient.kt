@@ -6,4 +6,7 @@ fun PodcastIndexClient(config: PodcastIndexClientConfig.() -> Unit): PodcastInde
 
 class PodcastIndexClient {
 
+    companion object {
+        internal const val BaseUrl = "https://api.podcastindex.org/api/1.0"
+    }
 }
