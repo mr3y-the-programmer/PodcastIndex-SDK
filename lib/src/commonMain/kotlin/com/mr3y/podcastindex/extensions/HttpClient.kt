@@ -92,6 +92,7 @@ private fun authHeader(epoch: Long, key: String, secret: String): String {
 private fun byteToHex(binary: ByteArray): String {
     val format = HexFormat {
         bytes {
+            groupSeparator = ""
             bytesPerGroup = 1
         }
     }
