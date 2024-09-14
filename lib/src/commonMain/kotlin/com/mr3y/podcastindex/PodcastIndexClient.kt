@@ -8,6 +8,7 @@ import com.mr3y.podcastindex.services.Podcasts
 import com.mr3y.podcastindex.services.Search
 import io.ktor.client.HttpClient
 
+@PodcastIndexConfigDsl
 fun PodcastIndexClient(block: PodcastIndexClientConfig.() -> Unit): PodcastIndexClient {
     val config = PodcastIndexClientConfig().apply { block() }
     return PodcastIndexClient(config)

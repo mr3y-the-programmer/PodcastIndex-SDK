@@ -2,6 +2,10 @@ package com.mr3y.podcastindex
 
 import io.ktor.client.engine.HttpClientEngineFactory
 
+@DslMarker
+annotation class PodcastIndexConfigDsl
+
+@PodcastIndexConfigDsl
 class PodcastIndexClientConfig {
 
     var engineFactory: HttpClientEngineFactory<*> = defaultHttpClientEngineFactory()
@@ -13,6 +17,7 @@ class PodcastIndexClientConfig {
     }
 }
 
+@PodcastIndexConfigDsl
 object PodcastIndexAuthentication {
     var userAgent: String? = null
 
