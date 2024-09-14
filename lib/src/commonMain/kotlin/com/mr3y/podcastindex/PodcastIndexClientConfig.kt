@@ -1,13 +1,19 @@
 package com.mr3y.podcastindex
 
+import io.ktor.client.engine.HttpClientEngineFactory
+
 class PodcastIndexClientConfig {
 
-    fun authentication(action: Authentication.() -> Unit) {
+    var engineFactory: HttpClientEngineFactory<*> = defaultHttpClientEngineFactory()
 
+    var maxRetries: Int = 3
+
+    fun authentication(action: PodcastIndexAuthentication.() -> Unit) {
+        PodcastIndexAuthentication.action()
     }
 }
 
-object Authentication {
+object PodcastIndexAuthentication {
     var userAgent: String? = null
 
     var authKey: String? = null

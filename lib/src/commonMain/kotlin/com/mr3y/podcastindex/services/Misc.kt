@@ -1,51 +1,34 @@
 package com.mr3y.podcastindex.services
 
 import com.mr3y.podcastindex.PodcastIndexClient
+import com.mr3y.podcastindex.extensions.parameterLimit
+import com.mr3y.podcastindex.extensions.parameterList
+import com.mr3y.podcastindex.extensions.withErrorHandling
 import com.mr3y.podcastindex.model.Category
-import com.mr3y.podcastindex.model.Response
+import com.mr3y.podcastindex.model.FeedTrending
 import io.ktor.client.HttpClient
-import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
-import io.ktor.client.statement.bodyAsText
-import io.ktor.http.HttpStatusCode
+import kotlinx.datetime.Instant
 
 typealias LanguageTag = String
-
-const val NoLanguageTag: LanguageTag = "unknown"
 
 class Misc internal constructor(private val client: HttpClient) {
 
     suspend fun getTrending(
         limit: Int = 0,
-        since: Long? = null, // TODO: take a friendly kotlinx.datetime type
+        since: Instant? = null,
         languages: List<LanguageTag> = emptyList(),
         includeCategories: List<Category> = emptyList(),
         excludeCategories: List<Category> = emptyList()
-    ): Response {
+    ): List<FeedTrending> {
         return withErrorHandling {
-            val response = client.get("${PodcastIndexClient.BaseUrl}/podcasts/trending") {
-                if (limit > 0)
-                    parameter("max", limit)
-                if (since != null) {
-                    parameter("since", since)
-                }
-                if (languages.isNotEmpty()) {
-                    parameter("lang", languages.joinToString(separator = ","))
-                }
-                if (includeCategories.isNotEmpty()) {
-                    parameter("cat", includeCategories.joinToString(separator = ",") { it.id.toString() })
-                }
-                if (excludeCategories.isNotEmpty()) {
-                    parameter("notcat", excludeCategories.joinToString(separator = ",") { it.id.toString() })
-                }
-            }
-
-            when (response.status) {
-                HttpStatusCode.OK -> Response.TrendingSuccess(response.body())
-                HttpStatusCode.BadRequest -> Response.BadRequest(response.body())
-                HttpStatusCode.Unauthorized -> Response.UnAuthenticated("You're Unauthenticated! Make sure to enter your authentication credentials correctly")
-                else -> Response.UnknownError(response.bodyAsText())
+            client.get("${PodcastIndexClient.BaseUrl}/podcasts/trending") {
+                parameterLimit(limit)
+                parameter("since", since?.toEpochMilliseconds())
+                parameterList("lang", languages)
+                parameterList("cat", includeCategories, transform = { it.id.toString() })
+                parameterList("notcat", excludeCategories, transform = { it.id.toString() })
             }
         }
     }

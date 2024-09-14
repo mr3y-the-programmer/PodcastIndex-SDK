@@ -1,102 +1,54 @@
 package com.mr3y.podcastindex.services
 
 import com.mr3y.podcastindex.PodcastIndexClient
-import com.mr3y.podcastindex.model.Response
+import com.mr3y.podcastindex.extensions.parameterLimit
+import com.mr3y.podcastindex.extensions.withErrorHandling
+import com.mr3y.podcastindex.model.Medium
+import com.mr3y.podcastindex.model.PodcastFeedSearch
 import io.ktor.client.HttpClient
-import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
-import io.ktor.client.statement.bodyAsText
-import io.ktor.http.HttpStatusCode
 
 class Podcasts internal constructor(private val client: HttpClient) {
 
-    suspend fun byFeedId(id: Int): Response {
+    suspend fun byFeedId(id: Int): PodcastFeedSearch {
         return withErrorHandling {
-            val response = client.get("${PodcastIndexClient.BaseUrl}/podcasts/byfeedid") {
+            client.get("${PodcastIndexClient.BaseUrl}/podcasts/byfeedid") {
                 parameter("id", id)
-            }
-
-            when (response.status) {
-                HttpStatusCode.OK -> Response.PodcastSuccess(response.body())
-                HttpStatusCode.BadRequest -> Response.BadRequest(response.body())
-                HttpStatusCode.Unauthorized -> Response.UnAuthenticated("You're Unauthenticated! Make sure to enter your authentication credentials correctly")
-                else -> Response.UnknownError(response.bodyAsText())
             }
         }
     }
 
-    suspend fun byFeedUrl(url: String): Response {
+    suspend fun byFeedUrl(url: String): PodcastFeedSearch {
         return withErrorHandling {
-            val response = client.get("${PodcastIndexClient.BaseUrl}/podcasts/byfeedurl") {
+            client.get("${PodcastIndexClient.BaseUrl}/podcasts/byfeedurl") {
                 parameter("url", url)
             }
-
-            when (response.status) {
-                HttpStatusCode.OK -> Response.PodcastSuccess(response.body())
-                HttpStatusCode.BadRequest -> Response.BadRequest(response.body())
-                HttpStatusCode.Unauthorized -> Response.UnAuthenticated("You're Unauthenticated! Make sure to enter your authentication credentials correctly")
-                else -> Response.UnknownError(response.bodyAsText())
-            }
         }
     }
 
-    suspend fun byItunesId(id: Int): Response {
+    suspend fun byItunesId(id: Int): PodcastFeedSearch {
         return withErrorHandling {
-            val response = client.get("${PodcastIndexClient.BaseUrl}/podcasts/byitunesid") {
+            client.get("${PodcastIndexClient.BaseUrl}/podcasts/byitunesid") {
                 parameter("id", id)
             }
-
-            when (response.status) {
-                HttpStatusCode.OK -> Response.PodcastSuccess(response.body())
-                HttpStatusCode.BadRequest -> Response.BadRequest(response.body())
-                HttpStatusCode.Unauthorized -> Response.UnAuthenticated("You're Unauthenticated! Make sure to enter your authentication credentials correctly")
-                else -> Response.UnknownError(response.bodyAsText())
-            }
         }
     }
 
-    suspend fun byGuid(guid: String): Response {
+    suspend fun byGuid(guid: String): PodcastFeedSearch {
         return withErrorHandling {
-            val response = client.get("${PodcastIndexClient.BaseUrl}/podcasts/byguid") {
+            client.get("${PodcastIndexClient.BaseUrl}/podcasts/byguid") {
                 parameter("guid", guid)
             }
-
-            when (response.status) {
-                HttpStatusCode.OK -> Response.PodcastSuccess(response.body())
-                HttpStatusCode.BadRequest -> Response.BadRequest(response.body())
-                HttpStatusCode.Unauthorized -> Response.UnAuthenticated("You're Unauthenticated! Make sure to enter your authentication credentials correctly")
-                else -> Response.UnknownError(response.bodyAsText())
-            }
         }
     }
 
-    suspend fun byMedium(medium: Medium, limit: Int = 0): Response {
+    suspend fun byMedium(medium: Medium, limit: Int = 0): List<PodcastFeedSearch> {
         return withErrorHandling {
-            val response = client.get("${PodcastIndexClient.BaseUrl}/podcasts/bymedium") {
+            client.get("${PodcastIndexClient.BaseUrl}/podcasts/bymedium") {
                 parameter("medium", medium.value)
-                if (limit > 0)
-                    parameter("max", limit)
-            }
-
-            when (response.status) {
-                HttpStatusCode.OK -> Response.PodcastsSuccess(response.body())
-                HttpStatusCode.BadRequest -> Response.BadRequest(response.body())
-                HttpStatusCode.Unauthorized -> Response.UnAuthenticated("You're Unauthenticated! Make sure to enter your authentication credentials correctly")
-                else -> Response.UnknownError(response.bodyAsText())
+                parameterLimit(limit)
             }
         }
     }
-}
-
-enum class Medium(val value: String) {
-    Podcast("podcast"),
-    Music("music"),
-    Video("video"),
-    Film("film"),
-    Audiobook("audiobook"),
-    Newsletter("newsletter"),
-    Blog("blog"),
-    Publisher("publisher"),
-    Course("course")
 }

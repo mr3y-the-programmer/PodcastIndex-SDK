@@ -1,5 +1,6 @@
 package com.mr3y.podcastindex.model
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -9,32 +10,32 @@ class PodcastFeedSearch (
     @SerialName(value = "podcastGuid") val podcastGuid: String,
     @SerialName(value = "title") val title: String,
     @SerialName(value = "url") val url: String,
-    @SerialName(value = "originalUrl") val originalUrl: String? = null,
-    @SerialName(value = "link") val link: String? = null,
-    @SerialName(value = "description") val description: String? = null,
-    @SerialName(value = "author") val author: String? = null,
-    @SerialName(value = "ownerName") val ownerName: String? = null,
-    @SerialName(value = "image") val image: String? = null,
-    @SerialName(value = "artwork") val artwork: String? = null,
-    @SerialName(value = "lastUpdateTime") val lastUpdateTime: Int? = null,
-    @SerialName(value = "lastCrawlTime") val lastCrawlTime: Int? = null,
-    @SerialName(value = "lastParseTime") val lastParseTime: Int? = null,
-    @SerialName(value = "lastGoodHttpStatusTime") val lastGoodHttpStatusTime: Int? = null,
-    @SerialName(value = "lastHttpStatus") val lastHttpStatus: Int? = null,
-    @SerialName(value = "contentType") val contentType: String? = null,
+    @SerialName(value = "originalUrl") val originalUrl: String,
+    @SerialName(value = "link") val link: String,
+    @SerialName(value = "description") val description: String,
+    @SerialName(value = "author") val author: String,
+    @SerialName(value = "ownerName") val ownerName: String,
+    @SerialName(value = "image") val image: String,
+    @SerialName(value = "artwork") val artwork: String,
+    @SerialName(value = "lastUpdateTime") val lastUpdateTime: Instant,
+    @SerialName(value = "lastCrawlTime") val lastCrawlTime: Instant,
+    @SerialName(value = "lastParseTime") val lastParseTime: Instant,
+    @SerialName(value = "lastGoodHttpStatusTime") val lastGoodHttpStatusTime: Instant,
+    @SerialName(value = "lastHttpStatus") val lastHttpStatus: Int,
+    @SerialName(value = "contentType") val contentType: String,
     @SerialName(value = "itunesId") val itunesId: Int? = null,
-    @SerialName(value = "generator") val generator: String? = null,
-    @SerialName(value = "language") val language: String? = null,
-    @SerialName(value = "explicit") val explicit: Boolean? = null,
-    @SerialName(value = "type") val type: Type? = null,
-    @SerialName(value = "medium") val medium: String? = null,
-    @SerialName(value = "dead") val dead: Int? = null,
-    @SerialName(value = "episodeCount") val episodeCount: Int? = null,
-    @SerialName(value = "crawlErrors") val crawlErrors: Int? = null,
-    @SerialName(value = "parseErrors") val parseErrors: Int? = null,
-    @SerialName(value = "locked") val locked: Locked? = null,
-    @SerialName(value = "imageUrlHash") val imageUrlHash: Int? = null,
-    @SerialName(value = "newestItemPubdate") val newestItemPubdate: Int? = null
+    @SerialName(value = "generator") val generator: String,
+    @SerialName(value = "language") val language: String,
+    @SerialName(value = "explicit") val explicit: Boolean,
+    @SerialName(value = "type") val type: Type,
+    @SerialName(value = "medium") val medium: String,
+    @SerialName(value = "dead") val dead: Int,
+    @SerialName(value = "episodeCount") val episodeCount: Int,
+    @SerialName(value = "crawlErrors") val crawlErrors: Int,
+    @SerialName(value = "parseErrors") val parseErrors: Int,
+    @SerialName(value = "locked") val locked: Locked,
+    @SerialName(value = "imageUrlHash") val imageUrlHash: Int,
+    @SerialName(value = "newestItemPubdate") val newestItemPubdate: Instant? = null
 )
 
 enum class Type(val code: Int) {

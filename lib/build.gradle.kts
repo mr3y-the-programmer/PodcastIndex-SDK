@@ -22,6 +22,7 @@ kotlin {
             implementation(libs.ktor.content.negotiation)
             implementation(libs.ktor.kotlinx.serialization)
             implementation(libs.kotlinx.serialization)
+            implementation(libs.kotlinx.datetime)
         }
 
         androidMain.dependencies {
@@ -45,6 +46,6 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 26
     }
 }
