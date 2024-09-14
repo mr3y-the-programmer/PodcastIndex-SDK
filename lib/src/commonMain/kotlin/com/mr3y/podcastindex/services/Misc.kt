@@ -5,7 +5,7 @@ import com.mr3y.podcastindex.extensions.parameterLimit
 import com.mr3y.podcastindex.extensions.parameterList
 import com.mr3y.podcastindex.extensions.withErrorHandling
 import com.mr3y.podcastindex.model.Category
-import com.mr3y.podcastindex.model.FeedTrending
+import com.mr3y.podcastindex.model.TrendingResult
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
@@ -21,7 +21,7 @@ class Misc internal constructor(private val client: HttpClient) {
         languages: List<LanguageTag> = emptyList(),
         includeCategories: List<Category> = emptyList(),
         excludeCategories: List<Category> = emptyList()
-    ): List<FeedTrending> {
+    ): TrendingResult {
         return withErrorHandling {
             client.get("${PodcastIndexClient.BaseUrl}/podcasts/trending") {
                 parameterLimit(limit)

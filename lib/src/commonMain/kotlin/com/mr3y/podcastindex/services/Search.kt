@@ -6,8 +6,8 @@ import com.mr3y.podcastindex.extensions.parameterLimit
 import com.mr3y.podcastindex.extensions.parameterQuery
 import com.mr3y.podcastindex.extensions.parameterValue
 import com.mr3y.podcastindex.extensions.withErrorHandling
-import com.mr3y.podcastindex.model.EpisodeFeedSearch
-import com.mr3y.podcastindex.model.PodcastFeedSearch
+import com.mr3y.podcastindex.model.MultipleEpisodesResult
+import com.mr3y.podcastindex.model.MultiplePodcastsResult
 import com.mr3y.podcastindex.model.Value
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
@@ -22,7 +22,7 @@ class Search internal constructor(private val client: HttpClient) {
         returnCleanOnly: Boolean = false,
         includeSimilar: Boolean = false,
         includeFullText: Boolean = false
-    ): List<PodcastFeedSearch> {
+    ): MultiplePodcastsResult {
         return withErrorHandling {
             client.get("${PodcastIndexClient.BaseUrl}/search/byterm") {
                 parameterQuery(term)
@@ -43,7 +43,7 @@ class Search internal constructor(private val client: HttpClient) {
         returnCleanOnly: Boolean = false,
         includeSimilar: Boolean = false,
         includeFullText: Boolean = false
-    ): List<PodcastFeedSearch> {
+    ): MultiplePodcastsResult {
         return withErrorHandling {
             client.get("${PodcastIndexClient.BaseUrl}/search/bytitle") {
                 parameterQuery(title)
@@ -60,7 +60,7 @@ class Search internal constructor(private val client: HttpClient) {
         name: String,
         limit: Int = 0,
         includeFullText: Boolean = false
-    ): List<EpisodeFeedSearch> {
+    ): MultipleEpisodesResult {
         return withErrorHandling {
             client.get("${PodcastIndexClient.BaseUrl}/search/byperson") {
                 parameterQuery(name)
@@ -77,7 +77,7 @@ class Search internal constructor(private val client: HttpClient) {
         aponly: Boolean = false,
         returnCleanOnly: Boolean = false,
         includeFullText: Boolean = false
-    ): List<PodcastFeedSearch> {
+    ): MultiplePodcastsResult {
         return withErrorHandling {
             client.get("${PodcastIndexClient.BaseUrl}/search/music/byterm") {
                 parameterQuery(term)

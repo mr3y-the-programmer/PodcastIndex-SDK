@@ -1,6 +1,7 @@
 package com.mr3y.podcastindex.extensions
 
 import com.mr3y.podcastindex.model.BadRequestException
+import com.mr3y.podcastindex.model.InternalException
 import com.mr3y.podcastindex.model.UnknownException
 import io.ktor.client.call.body
 import io.ktor.client.statement.HttpResponse
@@ -20,9 +21,9 @@ internal suspend inline fun <reified T> withErrorHandling(block: () -> HttpRespo
                 throw BadRequestException(description)
             }
             HttpStatusCode.Unauthorized -> throw IllegalStateException("You're Unauthenticated! Make sure to enter your authentication credentials correctly")
-            else -> throw UnknownException(response.bodyAsText(), null)
+            else -> throw UnknownException(response.bodyAsText())
         }
     } catch (ex: Exception) {
-        throw UnknownException(ex.message, ex.cause)
+        throw InternalException(ex.message, ex.cause)
     }
 }
