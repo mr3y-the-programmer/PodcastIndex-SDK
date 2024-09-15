@@ -1,16 +1,19 @@
 package com.mr3y.podcastindex.model
 
 import com.mr3y.podcastindex.extensions.InstantSerializer
+import dev.drewhamilton.poko.Poko
 import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
+@Poko
 class TrendingResult(
     @SerialName(value = "feeds") val feeds: List<TrendingFeed>
 )
 
 @Serializable
+@Poko
 class TrendingFeed(
     @SerialName(value = "id") val id: Int,
     @SerialName(value = "url") val url: String,

@@ -7,6 +7,7 @@ kotlinx-serialization = "1.7.1"
 kotlinx-datetime = "0.6.1"
 androidx-activityCompose = "1.9.1"
 compose = "1.6.11"
+poko = "0.17.0"
 buildconfig = "5.4.0"
 
 [libraries]
@@ -28,4 +29,5 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 android-library = { id = "com.android.library", version.ref = "agp" }
 android-app = { id = "com.android.application", version.ref = "agp" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+poko = { id = "dev.drewhamilton.poko", version.ref = "poko" }
 buildconfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildconfig" }

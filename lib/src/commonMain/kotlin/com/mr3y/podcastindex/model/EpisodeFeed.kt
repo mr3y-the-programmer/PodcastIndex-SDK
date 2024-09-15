@@ -3,16 +3,19 @@ package com.mr3y.podcastindex.model
 import com.mr3y.podcastindex.extensions.EpisodeTypeSerializer
 import com.mr3y.podcastindex.extensions.ExplicitSerializer
 import com.mr3y.podcastindex.extensions.InstantSerializer
+import dev.drewhamilton.poko.Poko
 import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
+@Poko
 class MultipleEpisodesResult(
     @SerialName(value = "feeds") val feeds: List<EpisodeFeed>
 )
 
 @Serializable
+@Poko
 class EpisodeFeed(
     @SerialName(value = "id") val id: Int,
     @SerialName(value = "title") val title: String,
