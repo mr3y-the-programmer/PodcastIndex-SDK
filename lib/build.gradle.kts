@@ -22,6 +22,8 @@ kotlin {
             implementation(libs.ktor.core)
             implementation(libs.ktor.content.negotiation)
             implementation(libs.ktor.kotlinx.serialization)
+            implementation(libs.ktor.logging)
+            implementation(libs.kermit)
             implementation(libs.kotlinx.serialization)
             implementation(libs.kotlinx.datetime)
         }

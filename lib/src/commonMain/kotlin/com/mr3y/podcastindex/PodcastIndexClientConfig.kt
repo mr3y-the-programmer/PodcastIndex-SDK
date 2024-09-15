@@ -12,6 +12,10 @@ class PodcastIndexClientConfig {
 
     var maxRetries: Int = 3
 
+    var enableLogging: Boolean = false
+
+    var loggingTag: String = "PodcastIndexSDK"
+
     fun authentication(action: PodcastIndexAuthentication.() -> Unit) {
         PodcastIndexAuthentication.action()
     }

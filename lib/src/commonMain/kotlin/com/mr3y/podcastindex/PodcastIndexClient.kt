@@ -1,6 +1,7 @@
 package com.mr3y.podcastindex
 
 import com.mr3y.podcastindex.extensions.installAuthenticationPlugin
+import com.mr3y.podcastindex.extensions.installLoggingPlugin
 import com.mr3y.podcastindex.extensions.installRetryPlugin
 import com.mr3y.podcastindex.extensions.installSerializationPlugin
 import com.mr3y.podcastindex.services.Misc
@@ -20,6 +21,9 @@ class PodcastIndexClient internal constructor(private val config: PodcastIndexCl
         installAuthenticationPlugin()
         installRetryPlugin(maxRetries = config.maxRetries)
         installSerializationPlugin()
+        if (config.enableLogging) {
+            installLoggingPlugin(config.loggingTag)
+        }
     }
 
     val podcasts = Podcasts(client)

@@ -1,10 +1,13 @@
 package com.mr3y.podcastindex.extensions
 
+import co.touchlab.kermit.Logger as KermitLogger
 import com.mr3y.podcastindex.PodcastIndexAuthentication
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.api.createClientPlugin
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.headers
 import io.ktor.http.HttpStatusCode
 import io.ktor.serialization.kotlinx.json.json
@@ -51,6 +54,19 @@ internal fun HttpClientConfig<*>.installRetryPlugin(maxRetries: Int) {
             }
         }
         constantDelay()
+    }
+}
+
+internal fun HttpClientConfig<*>.installLoggingPlugin(tag: String) {
+    install(Logging) {
+        logger = object : Logger {
+            override fun log(message: String) {
+                KermitLogger.d(tag = tag, messageString = message)
+            }
+        }
+        sanitizeHeader { header ->
+            header == "Authorization" || header == "X-Auth-Key"
+        }
     }
 }
 
