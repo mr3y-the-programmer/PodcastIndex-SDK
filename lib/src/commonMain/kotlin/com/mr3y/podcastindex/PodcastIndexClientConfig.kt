@@ -1,5 +1,6 @@
 package com.mr3y.podcastindex
 
+import com.mr3y.podcastindex.model.ValidationException
 import io.ktor.client.engine.HttpClientEngineFactory
 
 @DslMarker
@@ -24,6 +25,13 @@ class PodcastIndexClientConfig {
 @PodcastIndexConfigDsl
 object PodcastIndexAuthentication {
     var userAgent: String? = null
+        set(value) {
+            if (value.isNullOrBlank()) {
+                throw ValidationException("User agent cannot be null or blank")
+            } else {
+                field = value
+            }
+        }
 
     var authKey: String? = null
 

@@ -82,7 +82,7 @@ internal fun HttpClientConfig<*>.installSerializationPlugin() {
 }
 
 private fun reportUserIsUnAuthenticated(): Nothing {
-    throw IllegalArgumentException(
+    throw IllegalStateException(
         """
            You're Unauthenticated! Provide your authentication credentials obtained from https://api.podcastindex.org/ in the client initialization block
            ```
