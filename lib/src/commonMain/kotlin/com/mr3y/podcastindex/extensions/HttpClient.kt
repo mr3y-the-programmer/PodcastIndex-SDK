@@ -1,7 +1,7 @@
 package com.mr3y.podcastindex.extensions
 
 import co.touchlab.kermit.Logger as KermitLogger
-import com.mr3y.podcastindex.PodcastIndexAuthentication
+import com.mr3y.podcastindex.Authentication
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.api.createClientPlugin
@@ -15,25 +15,23 @@ import io.ktor.util.sha1
 import kotlinx.datetime.Clock
 import kotlinx.serialization.json.Json
 
-internal fun HttpClientConfig<*>.installAuthenticationPlugin() {
+internal fun HttpClientConfig<*>.installAuthenticationPlugin(authenticationInfo: Authentication) {
     // Add the necessary authentication headers to every request going out to PodcastIndex endpoints
     val requestAuthenticationPlugin = createClientPlugin("requestAuthenticatorPlugin") {
         onRequest { request, _ ->
             request.headers {
                 val epoch = (Clock.System.now().toEpochMilliseconds() / 1000)
-                val key = PodcastIndexAuthentication.authKey ?: reportUserIsUnAuthenticated()
-                val secret = PodcastIndexAuthentication.authSecret ?: reportUserIsUnAuthenticated()
-                append("User-Agent", PodcastIndexAuthentication.userAgent ?: reportUserIsUnAuthenticated())
+                append("User-Agent", authenticationInfo.userAgent)
                 append("X-Auth-Date", epoch.toString())
-                append("X-Auth-Key", key)
-                append("Authorization", authHeader(epoch, key, secret))
+                append("X-Auth-Key", authenticationInfo.key)
+                append("Authorization", authHeader(epoch, authenticationInfo.key, authenticationInfo.secret))
             }
         }
     }
     install(requestAuthenticationPlugin)
 }
 
-internal fun HttpClientConfig<*>.installRetryPlugin(maxRetries: Int) {
+internal fun HttpClientConfig<*>.installRetryPlugin(authenticationInfo: Authentication, maxRetries: Int) {
     install(HttpRequestRetry) {
         modifyRequest { request ->
             // The server expects the auth date to be within a 3 minutes time window around the server time
@@ -41,9 +39,7 @@ internal fun HttpClientConfig<*>.installRetryPlugin(maxRetries: Int) {
             // to solve this, retry the request with a 1.5 minutes offset.
             val epoch = (Clock.System.now().toEpochMilliseconds() / 1000) - 150
             request.headers["X-Auth-Date"] = epoch.toString()
-            val key = PodcastIndexAuthentication.authKey ?: reportUserIsUnAuthenticated()
-            val secret = PodcastIndexAuthentication.authSecret ?: reportUserIsUnAuthenticated()
-            request.headers["Authorization"] = authHeader(epoch, key, secret)
+            request.headers["Authorization"] = authHeader(epoch, authenticationInfo.key, authenticationInfo.secret)
         }
         retryIf(maxRetries) { _, httpResponse ->
             when {
@@ -79,24 +75,6 @@ internal fun HttpClientConfig<*>.installSerializationPlugin() {
     install(ContentNegotiation) {
         json(jsonInstance)
     }
-}
-
-private fun reportUserIsUnAuthenticated(): Nothing {
-    throw IllegalStateException(
-        """
-           You're Unauthenticated! Provide your authentication credentials obtained from https://api.podcastindex.org/ in the client initialization block
-           ```
-           val client = PodcastIndexClient {
-               authentication {
-                   userAgent = "<your-user-agent>"
-                   authKey = "<your-auth-key>"
-                   authSecret = "<your-auth-secret>"
-               }
-           }
-           ```
-           Check https://podcastindex-org.github.io/docs-api/#auth for more details
-        """.trimIndent()
-    )
 }
 
 private fun authHeader(epoch: Long, key: String, secret: String): String {

@@ -10,16 +10,26 @@ import com.mr3y.podcastindex.services.Search
 import io.ktor.client.HttpClient
 
 @PodcastIndexConfigDsl
-fun PodcastIndexClient(block: PodcastIndexClientConfig.() -> Unit): PodcastIndexClient {
+fun PodcastIndexClient(
+    authKey: String,
+    authSecret: String,
+    userAgent: String,
+    block: PodcastIndexClientConfig.() -> Unit = {}
+): PodcastIndexClient {
+    require(userAgent.isNotBlank()) { "User agent cannot be blank" }
+    val auth = Authentication(authKey, authSecret, userAgent)
     val config = PodcastIndexClientConfig().apply { block() }
-    return PodcastIndexClient(config)
+    return PodcastIndexClient(auth, config)
 }
 
-class PodcastIndexClient internal constructor(private val config: PodcastIndexClientConfig) {
+class PodcastIndexClient internal constructor(
+    private val authentication: Authentication,
+    private val config: PodcastIndexClientConfig
+) {
 
-    private val client: HttpClient = HttpClient(config.engineFactory) {
-        installAuthenticationPlugin()
-        installRetryPlugin(maxRetries = config.maxRetries)
+    private val client: HttpClient = HttpClient(defaultHttpClientEngineFactory()) {
+        installAuthenticationPlugin(authentication)
+        installRetryPlugin(authentication, maxRetries = config.maxRetries)
         installSerializationPlugin()
         if (config.enableLogging) {
             installLoggingPlugin(config.loggingTag)
