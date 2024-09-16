@@ -11,6 +11,10 @@ class PodcastIndexClientConfig {
     var enableLogging: Boolean = false
 
     var loggingTag: String = "PodcastIndexSDK"
+
+    var enableTimeout: Boolean = true
+
+    var defaultTimeout: Long = 10_000
 }
 
 internal data class Authentication(

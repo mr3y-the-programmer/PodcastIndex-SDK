@@ -4,6 +4,7 @@ import com.mr3y.podcastindex.extensions.installAuthenticationPlugin
 import com.mr3y.podcastindex.extensions.installLoggingPlugin
 import com.mr3y.podcastindex.extensions.installRetryPlugin
 import com.mr3y.podcastindex.extensions.installSerializationPlugin
+import com.mr3y.podcastindex.extensions.installTimeoutPlugin
 import com.mr3y.podcastindex.services.Misc
 import com.mr3y.podcastindex.services.Podcasts
 import com.mr3y.podcastindex.services.Search
@@ -33,6 +34,9 @@ class PodcastIndexClient internal constructor(
         installSerializationPlugin()
         if (config.enableLogging) {
             installLoggingPlugin(config.loggingTag)
+        }
+        if (config.enableTimeout) {
+            installTimeoutPlugin(config.defaultTimeout)
         }
     }
 

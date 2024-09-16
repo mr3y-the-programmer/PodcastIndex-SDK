@@ -4,6 +4,7 @@ import co.touchlab.kermit.Logger as KermitLogger
 import com.mr3y.podcastindex.Authentication
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.plugins.HttpRequestRetry
+import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.api.createClientPlugin
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.Logger
@@ -74,6 +75,12 @@ internal fun HttpClientConfig<*>.installSerializationPlugin() {
 
     install(ContentNegotiation) {
         json(jsonInstance)
+    }
+}
+
+internal fun HttpClientConfig<*>.installTimeoutPlugin(reqTimeout: Long) {
+    install(HttpTimeout) {
+        requestTimeoutMillis = reqTimeout
     }
 }
 
