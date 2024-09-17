@@ -14,3 +14,4 @@ xcuserdata/
 Pods/
 *.jks
 *yarn.lock
+lib/src/commonMain/kotlin/com/mr3y/podcastindex/Sample.kt

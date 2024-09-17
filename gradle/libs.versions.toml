@@ -1,15 +1,11 @@
 [versions]
 
 kotlin = "2.0.20"
-agp = "8.5.2"
 ktor = "2.3.12"
 kotlinx-serialization = "1.7.1"
 kotlinx-datetime = "0.6.1"
-androidx-activityCompose = "1.9.1"
-compose = "1.6.11"
 poko = "0.17.0"
 kermit = "2.0.4"
-buildconfig = "5.4.0"
 
 [libraries]
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
@@ -20,17 +16,9 @@ ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
-# Sample dependencies
-androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 
 [plugins]
 
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-compose = { id = "org.jetbrains.compose", version.ref = "compose" }
-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-android-library = { id = "com.android.library", version.ref = "agp" }
-android-app = { id = "com.android.application", version.ref = "agp" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 poko = { id = "dev.drewhamilton.poko", version.ref = "poko" }
-buildconfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildconfig" }

@@ -29,11 +29,5 @@ dependencyResolutionManagement {
     }
 }
 includeBuild("convention-plugins")
-include(
-    ":lib",
-    // sample
-    ":sample:common",
-    ":sample:android",
-    ":sample:desktop"
-)
+include(":lib")
 
