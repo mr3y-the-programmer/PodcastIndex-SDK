@@ -18,6 +18,12 @@ class MultipleEpisodesResult(
 
 @Serializable
 @Poko
+class SingleEpisodeResult(
+    @SerialName(value = "episode") val episode: EpisodeFeed
+)
+
+@Serializable
+@Poko
 class LiveEpisodeFeed(
     @SerialName(value = "id") val id: Long,
     @SerialName(value = "title") val title: String,
@@ -55,7 +61,7 @@ class EpisodeFeed(
     @SerialName(value = "id") val id: Long,
     @SerialName(value = "title") val title: String,
     @SerialName(value = "link") val link: String,
-    @SerialName(value = "description") val description: String,
+    @SerialName(value = "description") val description: String? = null,
     @SerialName(value = "guid") val guid: String,
     @SerialName(value = "datePublished") @Serializable(InstantSerializer::class) val datePublished: Instant,
     @SerialName(value = "dateCrawled") @Serializable(InstantSerializer::class) val dateCrawled: Instant,
@@ -71,9 +77,9 @@ class EpisodeFeed(
     @SerialName(value = "feedItunesId") val feedItunesId: Int? = null,
     @SerialName(value = "feedImage") val feedImage: String,
     @SerialName(value = "feedId") val feedId: Int,
-    @SerialName(value = "feedUrl") val feedUrl: String,
-    @SerialName(value = "feedAuthor") val feedAuthor: String,
-    @SerialName(value = "feedTitle") val feedTitle: String,
+    @SerialName(value = "feedUrl") val feedUrl: String? = null,
+    @SerialName(value = "feedAuthor") val feedAuthor: String? = null,
+    @SerialName(value = "feedTitle") val feedTitle: String? = null,
     @SerialName(value = "feedLanguage") val feedLanguage: String,
     @SerialName(value = "chaptersUrl") val chaptersUrl: String? = null,
     @SerialName(value = "transcriptUrl") val transcriptUrl: String? = null,
