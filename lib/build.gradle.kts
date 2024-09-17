@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.multiplatform)
-    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.poko)
     id("convention.publication")
@@ -11,9 +10,6 @@ version = "1.0"
 
 kotlin {
     jvmToolchain(17)
-    androidTarget {
-        publishLibraryVariants("release")
-    }
 
     jvm()
 
@@ -28,10 +24,6 @@ kotlin {
             implementation(libs.kotlinx.datetime)
         }
 
-        androidMain.dependencies {
-            implementation(libs.ktor.okhttp)
-        }
-
         jvmMain.dependencies {
             implementation(libs.ktor.okhttp)
         }
@@ -39,16 +31,5 @@ kotlin {
         commonTest.dependencies {
             implementation(kotlin("test"))
         }
-
-    }
-
-}
-
-android {
-    namespace = "com.mr3y.podcastindex"
-    compileSdk = 34
-
-    defaultConfig {
-        minSdk = 26
     }
 }
