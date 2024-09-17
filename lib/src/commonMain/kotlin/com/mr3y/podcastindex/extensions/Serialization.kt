@@ -3,6 +3,7 @@ package com.mr3y.podcastindex.extensions
 import com.mr3y.podcastindex.model.EpisodeType
 import com.mr3y.podcastindex.model.Explicit
 import com.mr3y.podcastindex.model.Locked
+import com.mr3y.podcastindex.model.Status
 import com.mr3y.podcastindex.model.Type
 import kotlinx.datetime.Instant
 import kotlinx.serialization.KSerializer
@@ -32,7 +33,8 @@ internal class ExplicitSerializer : KSerializer<Explicit> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("Explicit", PrimitiveKind.INT)
 
     override fun deserialize(decoder: Decoder): Explicit {
-        return Explicit.entries.first { it.code == decoder.decodeInt() }
+        val code = decoder.decodeInt()
+        return Explicit.entries.first { it.code == code }
     }
 
     override fun serialize(encoder: Encoder, value: Explicit) {
@@ -84,6 +86,19 @@ internal class EpisodeTypeSerializer : KSerializer<EpisodeType?> {
         // Serialization isn't implemented right now as support for endpoints
         // that allows writing/updating to the Index hasn't been added yet
     }
-
-    private fun String.capitalize(): String = replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
 }
+
+internal class EpisodeStatusSerializer : KSerializer<Status> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("EpisodeStatus", PrimitiveKind.STRING)
+
+    override fun deserialize(decoder: Decoder): Status {
+        return Status.valueOf(decoder.decodeString().capitalize())
+    }
+
+    override fun serialize(encoder: Encoder, value: Status) {
+        // Serialization isn't implemented right now as support for endpoints
+        // that allows writing/updating to the Index hasn't been added yet
+    }
+}
+
+private fun String.capitalize(): String = replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
