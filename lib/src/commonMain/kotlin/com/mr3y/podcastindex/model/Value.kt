@@ -1,6 +1,6 @@
 package com.mr3y.podcastindex.model
 
-enum class Value {
+public enum class Value {
     Any,
     Lightning,
     Hive,

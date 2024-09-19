@@ -10,57 +10,57 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @Poko
-class MultiplePodcastsResult(
-    @SerialName(value = "feeds") val feeds: List<PodcastFeed>
+public class MultiplePodcastsResult(
+    @SerialName(value = "feeds") public val feeds: List<PodcastFeed>
 )
 
 @Serializable
 @Poko
-class SinglePodcastResult(
-    @SerialName(value = "feed") val feed: PodcastFeed
+public class SinglePodcastResult(
+    @SerialName(value = "feed") public val feed: PodcastFeed
 )
 
 @Serializable
 @Poko
-class PodcastFeed (
-    @SerialName(value = "id") val id: Int,
-    @SerialName(value = "podcastGuid") val podcastGuid: String,
-    @SerialName(value = "title") val title: String,
-    @SerialName(value = "url") val url: String,
-    @SerialName(value = "originalUrl") val originalUrl: String,
-    @SerialName(value = "link") val link: String,
-    @SerialName(value = "description") val description: String,
-    @SerialName(value = "author") val author: String,
-    @SerialName(value = "ownerName") val ownerName: String,
-    @SerialName(value = "image") val image: String,
-    @SerialName(value = "artwork") val artwork: String,
-    @SerialName(value = "lastUpdateTime") @Serializable(InstantSerializer::class) val lastUpdateTime: Instant,
-    @SerialName(value = "lastCrawlTime") @Serializable(InstantSerializer::class) val lastCrawlTime: Instant,
-    @SerialName(value = "lastParseTime") @Serializable(InstantSerializer::class) val lastParseTime: Instant,
-    @SerialName(value = "lastGoodHttpStatusTime") @Serializable(InstantSerializer::class) val lastGoodHttpStatusTime: Instant,
-    @SerialName(value = "lastHttpStatus") val lastHttpStatus: Int,
-    @SerialName(value = "contentType") val contentType: String,
-    @SerialName(value = "itunesId") val itunesId: Int? = null,
-    @SerialName(value = "generator") val generator: String,
-    @SerialName(value = "language") val language: String,
-    @SerialName(value = "explicit") val explicit: Boolean,
-    @SerialName(value = "type") @Serializable(TypeSerializer::class) val type: Type,
-    @SerialName(value = "medium") val medium: String,
-    @SerialName(value = "dead") val dead: Int,
-    @SerialName(value = "episodeCount") val episodeCount: Int,
-    @SerialName(value = "crawlErrors") val crawlErrors: Int,
-    @SerialName(value = "parseErrors") val parseErrors: Int,
-    @SerialName(value = "locked") @Serializable(LockedSerializer::class) val locked: Locked,
-    @SerialName(value = "imageUrlHash") val imageUrlHash: Int,
-    @SerialName(value = "newestItemPubdate") @Serializable(InstantSerializer::class) val newestItemPubdate: Instant? = null
+public class PodcastFeed (
+    @SerialName(value = "id") public val id: Int,
+    @SerialName(value = "podcastGuid") public val podcastGuid: String,
+    @SerialName(value = "title") public val title: String,
+    @SerialName(value = "url") public val url: String,
+    @SerialName(value = "originalUrl") public val originalUrl: String,
+    @SerialName(value = "link") public val link: String,
+    @SerialName(value = "description") public val description: String,
+    @SerialName(value = "author") public val author: String,
+    @SerialName(value = "ownerName") public val ownerName: String,
+    @SerialName(value = "image") public val image: String,
+    @SerialName(value = "artwork") public val artwork: String,
+    @SerialName(value = "lastUpdateTime") @Serializable(InstantSerializer::class) public val lastUpdateTime: Instant,
+    @SerialName(value = "lastCrawlTime") @Serializable(InstantSerializer::class) public val lastCrawlTime: Instant,
+    @SerialName(value = "lastParseTime") @Serializable(InstantSerializer::class) public val lastParseTime: Instant,
+    @SerialName(value = "lastGoodHttpStatusTime") @Serializable(InstantSerializer::class) public val lastGoodHttpStatusTime: Instant,
+    @SerialName(value = "lastHttpStatus") public val lastHttpStatus: Int,
+    @SerialName(value = "contentType") public val contentType: String,
+    @SerialName(value = "itunesId") public val itunesId: Int? = null,
+    @SerialName(value = "generator") public val generator: String,
+    @SerialName(value = "language") public val language: String,
+    @SerialName(value = "explicit") public val explicit: Boolean,
+    @SerialName(value = "type") @Serializable(TypeSerializer::class) public val type: Type,
+    @SerialName(value = "medium") public val medium: String,
+    @SerialName(value = "dead") public val dead: Int,
+    @SerialName(value = "episodeCount") public val episodeCount: Int,
+    @SerialName(value = "crawlErrors") public val crawlErrors: Int,
+    @SerialName(value = "parseErrors") public val parseErrors: Int,
+    @SerialName(value = "locked") @Serializable(LockedSerializer::class) public val locked: Locked,
+    @SerialName(value = "imageUrlHash") public val imageUrlHash: Int,
+    @SerialName(value = "newestItemPubdate") @Serializable(InstantSerializer::class) public val newestItemPubdate: Instant? = null
 )
 
-enum class Type(val code: Int) {
+public enum class Type(public val code: Int) {
     RSS(0),
     Atom(1)
 }
 
-enum class Locked(val code: Int) {
+public enum class Locked(public val code: Int) {
     No(0),
     Yes(1)
 }

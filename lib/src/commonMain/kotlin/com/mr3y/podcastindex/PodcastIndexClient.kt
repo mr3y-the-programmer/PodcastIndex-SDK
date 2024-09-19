@@ -23,7 +23,7 @@ import io.ktor.client.HttpClient
  * @return [PodcastIndexClient]
  */
 @PodcastIndexConfigDsl
-fun PodcastIndexClient(
+public fun PodcastIndexClient(
     authKey: String,
     authSecret: String,
     userAgent: String,
@@ -38,7 +38,7 @@ fun PodcastIndexClient(
 /**
  * PodcastIndexClient instance responsible for interacting with different PodcastIndex API endpoints.
  */
-class PodcastIndexClient internal constructor(
+public class PodcastIndexClient internal constructor(
     private val authentication: Authentication,
     private val config: PodcastIndexClientConfig
 ) {
@@ -55,15 +55,15 @@ class PodcastIndexClient internal constructor(
         }
     }
 
-    val podcasts = Podcasts(client)
+    public val podcasts: Podcasts = Podcasts(client)
 
-    val search = Search(client)
+    public val search: Search = Search(client)
 
-    val episodes = Episodes(client)
+    public val episodes: Episodes = Episodes(client)
 
-    val misc = Misc(client)
+    public val misc: Misc = Misc(client)
 
-    companion object {
+    internal companion object {
         internal const val BaseUrl = "https://api.podcastindex.org/api/1.0"
     }
 }

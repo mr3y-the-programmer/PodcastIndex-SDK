@@ -8,22 +8,22 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @Poko
-class TrendingResult(
-    @SerialName(value = "feeds") val feeds: List<TrendingFeed>
+public class TrendingResult(
+    @SerialName(value = "feeds") public val feeds: List<TrendingFeed>
 )
 
 @Serializable
 @Poko
-class TrendingFeed(
-    @SerialName(value = "id") val id: Int,
-    @SerialName(value = "url") val url: String,
-    @SerialName(value = "title") val title: String,
-    @SerialName(value = "description") val description: String,
-    @SerialName(value = "author") val author: String,
-    @SerialName(value = "image") val image: String,
-    @SerialName(value = "artwork") val artwork: String,
-    @SerialName(value = "newestItemPublishTime") @Serializable(InstantSerializer::class) val newestItemPublishTime: Instant,
-    @SerialName(value = "itunesId") val itunesId: Int? = null,
-    @SerialName(value = "trendScore") val trendScore: Int,
-    @SerialName(value = "language") val language: String,
+public class TrendingFeed(
+    @SerialName(value = "id") public val id: Int,
+    @SerialName(value = "url") public val url: String,
+    @SerialName(value = "title") public val title: String,
+    @SerialName(value = "description") public val description: String,
+    @SerialName(value = "author") public val author: String,
+    @SerialName(value = "image") public val image: String,
+    @SerialName(value = "artwork") public val artwork: String,
+    @SerialName(value = "newestItemPublishTime") @Serializable(InstantSerializer::class) public val newestItemPublishTime: Instant,
+    @SerialName(value = "itunesId") public val itunesId: Int? = null,
+    @SerialName(value = "trendScore") public val trendScore: Int,
+    @SerialName(value = "language") public val language: String,
 )

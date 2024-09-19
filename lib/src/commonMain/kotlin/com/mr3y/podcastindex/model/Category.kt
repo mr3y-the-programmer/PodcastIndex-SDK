@@ -1,6 +1,6 @@
 package com.mr3y.podcastindex.model
 
-enum class Category(val id: Int, val label: String) {
+public enum class Category(public val id: Int, public val label: String) {
     ARTS(1, "Arts"),
     BOOKS(2, "Books"),
     DESIGN(3, "Design"),

@@ -12,9 +12,9 @@ import com.mr3y.podcastindex.model.Value
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 
-class Search internal constructor(private val client: HttpClient) {
+public class Search internal constructor(private val client: HttpClient) {
 
-    suspend fun forPodcastsByTerm(
+    public suspend fun forPodcastsByTerm(
         term: String,
         hasValue: Value = Value.Any,
         limit: Int = 0,
@@ -36,7 +36,7 @@ class Search internal constructor(private val client: HttpClient) {
         }
     }
 
-    suspend fun forPodcastsByTitle(
+    public suspend fun forPodcastsByTitle(
         title: String,
         hasValue: Value = Value.Any,
         limit: Int = 0,
@@ -56,7 +56,7 @@ class Search internal constructor(private val client: HttpClient) {
         }
     }
 
-    suspend fun forEpisodesByPerson(
+    public suspend fun forEpisodesByPerson(
         name: String,
         limit: Int = 0,
         includeFullText: Boolean = false
@@ -70,7 +70,7 @@ class Search internal constructor(private val client: HttpClient) {
         }
     }
 
-    suspend fun forMusicPodcastsByTerm(
+    public suspend fun forMusicPodcastsByTerm(
         term: String,
         hasValue: Value = Value.Any,
         limit: Int = 0,

@@ -12,9 +12,9 @@ import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import kotlinx.datetime.Instant
 
-class Episodes internal constructor(private val client: HttpClient) {
+public class Episodes internal constructor(private val client: HttpClient) {
 
-    suspend fun byFeedId(
+    public suspend fun byFeedId(
         ids: List<Int>,
         since: Instant? = null,
         limit: Int = 0,
@@ -32,7 +32,7 @@ class Episodes internal constructor(private val client: HttpClient) {
         }
     }
 
-    suspend fun byFeedUrl(
+    public suspend fun byFeedUrl(
         url: String,
         since: Instant? = null,
         limit: Int = 0,
@@ -48,7 +48,7 @@ class Episodes internal constructor(private val client: HttpClient) {
         }
     }
 
-    suspend fun byPodcastGuid(
+    public suspend fun byPodcastGuid(
         guid: String,
         since: Instant? = null,
         limit: Int = 0,
@@ -64,7 +64,7 @@ class Episodes internal constructor(private val client: HttpClient) {
         }
     }
 
-    suspend fun byFeedItunesId(
+    public suspend fun byFeedItunesId(
         id: Int,
         since: Instant? = null,
         limit: Int = 0,
@@ -82,7 +82,7 @@ class Episodes internal constructor(private val client: HttpClient) {
         }
     }
 
-    suspend fun byId(
+    public suspend fun byId(
         id: Long,
         includeFullText: Boolean = false,
     ): SingleEpisodeResult {
@@ -94,7 +94,7 @@ class Episodes internal constructor(private val client: HttpClient) {
         }
     }
 
-    suspend fun byGuidAndFeedId(
+    public suspend fun byGuidAndFeedId(
         guid: String,
         feedId: Int,
         includeFullText: Boolean = false,
@@ -108,7 +108,7 @@ class Episodes internal constructor(private val client: HttpClient) {
         }
     }
 
-    suspend fun byGuidAndFeedUrl(
+    public suspend fun byGuidAndFeedUrl(
         guid: String,
         feedUrl: String,
         includeFullText: Boolean = false,
@@ -122,7 +122,7 @@ class Episodes internal constructor(private val client: HttpClient) {
         }
     }
 
-    suspend fun byGuidAndFeedGuid(
+    public suspend fun byGuidAndFeedGuid(
         guid: String,
         podcastGuid: String,
         includeFullText: Boolean = false,

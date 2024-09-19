@@ -11,91 +11,91 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @Poko
-class MultipleEpisodesResult(
-    @SerialName(value = "liveItems") val liveItems: List<LiveEpisodeFeed>? = null,
-    @SerialName(value = "items") val items: List<EpisodeFeed>
+public class MultipleEpisodesResult(
+    @SerialName(value = "liveItems") public val liveItems: List<LiveEpisodeFeed>? = null,
+    @SerialName(value = "items") public val items: List<EpisodeFeed>
 )
 
 @Serializable
 @Poko
-class SingleEpisodeResult(
-    @SerialName(value = "episode") val episode: EpisodeFeed
+public class SingleEpisodeResult(
+    @SerialName(value = "episode") public val episode: EpisodeFeed
 )
 
 @Serializable
 @Poko
-class LiveEpisodeFeed(
-    @SerialName(value = "id") val id: Long,
-    @SerialName(value = "title") val title: String,
-    @SerialName(value = "link") val link: String,
-    @SerialName(value = "description") val description: String,
-    @SerialName(value = "guid") val guid: String,
-    @SerialName(value = "datePublished") @Serializable(InstantSerializer::class) val datePublished: Instant,
-    @SerialName(value = "datePublishedPretty") val datePublishedPretty: String,
-    @SerialName(value = "dateCrawled") @Serializable(InstantSerializer::class) val dateCrawled: Instant,
-    @SerialName(value = "enclosureUrl") val enclosureUrl: String,
-    @SerialName(value = "enclosureType") val enclosureType: String,
-    @SerialName(value = "enclosureLength") val enclosureLength: Int,
-    @SerialName(value = "startTime") @Serializable(InstantSerializer::class) val startTime: Instant,
-    @SerialName(value = "endTime") @Serializable(InstantSerializer::class) val endTime: Instant,
-    @SerialName(value = "status") @Serializable(EpisodeStatusSerializer::class) val status: Status,
-    @SerialName(value = "contentLink") val contentLink: String? = null,
-    @SerialName(value = "duration") val duration: Int? = null,
-    @SerialName(value = "explicit") @Serializable(ExplicitSerializer::class) val explicit: Explicit,
-    @SerialName(value = "episode") val episode: Int? = null,
-    @SerialName(value = "episodeType") @Serializable(EpisodeTypeSerializer::class) val episodeType: EpisodeType? = null,
-    @SerialName(value = "season") val season: Int? = null,
-    @SerialName(value = "image") val image: String,
-    @SerialName(value = "feedItunesId") val feedItunesId: Int? = null,
-    @SerialName(value = "feedImage") val feedImage: String,
-    @SerialName(value = "feedId") val feedId: Int,
-    @SerialName(value = "feedLanguage") val feedLanguage: String,
-    @SerialName(value = "feedDuplicateOf") val feedDuplicateOf: Int? = null,
-    @SerialName(value = "chaptersUrl") val chaptersUrl: String? = null,
-    @SerialName(value = "transcriptUrl") val transcriptUrl: String? = null
+public class LiveEpisodeFeed(
+    @SerialName(value = "id") public val id: Long,
+    @SerialName(value = "title") public val title: String,
+    @SerialName(value = "link") public val link: String,
+    @SerialName(value = "description") public val description: String,
+    @SerialName(value = "guid") public val guid: String,
+    @SerialName(value = "datePublished") @Serializable(InstantSerializer::class) public val datePublished: Instant,
+    @SerialName(value = "datePublishedPretty") public val datePublishedPretty: String,
+    @SerialName(value = "dateCrawled") @Serializable(InstantSerializer::class) public val dateCrawled: Instant,
+    @SerialName(value = "enclosureUrl") public val enclosureUrl: String,
+    @SerialName(value = "enclosureType") public val enclosureType: String,
+    @SerialName(value = "enclosureLength") public val enclosureLength: Int,
+    @SerialName(value = "startTime") @Serializable(InstantSerializer::class) public val startTime: Instant,
+    @SerialName(value = "endTime") @Serializable(InstantSerializer::class) public val endTime: Instant,
+    @SerialName(value = "status") @Serializable(EpisodeStatusSerializer::class) public val status: Status,
+    @SerialName(value = "contentLink") public val contentLink: String? = null,
+    @SerialName(value = "duration") public val duration: Int? = null,
+    @SerialName(value = "explicit") @Serializable(ExplicitSerializer::class) public val explicit: Explicit,
+    @SerialName(value = "episode") public val episode: Int? = null,
+    @SerialName(value = "episodeType") @Serializable(EpisodeTypeSerializer::class) public val episodeType: EpisodeType? = null,
+    @SerialName(value = "season") public val season: Int? = null,
+    @SerialName(value = "image") public val image: String,
+    @SerialName(value = "feedItunesId") public val feedItunesId: Int? = null,
+    @SerialName(value = "feedImage") public val feedImage: String,
+    @SerialName(value = "feedId") public val feedId: Int,
+    @SerialName(value = "feedLanguage") public val feedLanguage: String,
+    @SerialName(value = "feedDuplicateOf") public val feedDuplicateOf: Int? = null,
+    @SerialName(value = "chaptersUrl") public val chaptersUrl: String? = null,
+    @SerialName(value = "transcriptUrl") public val transcriptUrl: String? = null
 )
 
 @Serializable
 @Poko
-class EpisodeFeed(
-    @SerialName(value = "id") val id: Long,
-    @SerialName(value = "title") val title: String,
-    @SerialName(value = "link") val link: String,
-    @SerialName(value = "description") val description: String? = null,
-    @SerialName(value = "guid") val guid: String,
-    @SerialName(value = "datePublished") @Serializable(InstantSerializer::class) val datePublished: Instant,
-    @SerialName(value = "dateCrawled") @Serializable(InstantSerializer::class) val dateCrawled: Instant,
-    @SerialName(value = "enclosureUrl") val enclosureUrl: String,
-    @SerialName(value = "enclosureType") val enclosureType: String,
-    @SerialName(value = "enclosureLength") val enclosureLength: Int,
-    @SerialName(value = "duration") val duration: Int? = null,
-    @SerialName(value = "explicit") @Serializable(ExplicitSerializer::class) val explicit: Explicit,
-    @SerialName(value = "episode") val episode: Int? = null,
-    @SerialName(value = "episodeType") @Serializable(EpisodeTypeSerializer::class) val episodeType: EpisodeType? = null,
-    @SerialName(value = "season") val season: Int? = null,
-    @SerialName(value = "image") val image: String,
-    @SerialName(value = "feedItunesId") val feedItunesId: Int? = null,
-    @SerialName(value = "feedImage") val feedImage: String,
-    @SerialName(value = "feedId") val feedId: Int,
-    @SerialName(value = "feedUrl") val feedUrl: String? = null,
-    @SerialName(value = "feedAuthor") val feedAuthor: String? = null,
-    @SerialName(value = "feedTitle") val feedTitle: String? = null,
-    @SerialName(value = "feedLanguage") val feedLanguage: String,
-    @SerialName(value = "chaptersUrl") val chaptersUrl: String? = null,
-    @SerialName(value = "transcriptUrl") val transcriptUrl: String? = null,
+public class EpisodeFeed(
+    @SerialName(value = "id") public val id: Long,
+    @SerialName(value = "title") public val title: String,
+    @SerialName(value = "link") public val link: String,
+    @SerialName(value = "description") public val description: String? = null,
+    @SerialName(value = "guid") public val guid: String,
+    @SerialName(value = "datePublished") @Serializable(InstantSerializer::class) public val datePublished: Instant,
+    @SerialName(value = "dateCrawled") @Serializable(InstantSerializer::class) public val dateCrawled: Instant,
+    @SerialName(value = "enclosureUrl") public val enclosureUrl: String,
+    @SerialName(value = "enclosureType") public val enclosureType: String,
+    @SerialName(value = "enclosureLength") public val enclosureLength: Int,
+    @SerialName(value = "duration") public val duration: Int? = null,
+    @SerialName(value = "explicit") @Serializable(ExplicitSerializer::class) public val explicit: Explicit,
+    @SerialName(value = "episode") public val episode: Int? = null,
+    @SerialName(value = "episodeType") @Serializable(EpisodeTypeSerializer::class) public val episodeType: EpisodeType? = null,
+    @SerialName(value = "season") public val season: Int? = null,
+    @SerialName(value = "image") public val image: String,
+    @SerialName(value = "feedItunesId") public val feedItunesId: Int? = null,
+    @SerialName(value = "feedImage") public val feedImage: String,
+    @SerialName(value = "feedId") public val feedId: Int,
+    @SerialName(value = "feedUrl") public val feedUrl: String? = null,
+    @SerialName(value = "feedAuthor") public val feedAuthor: String? = null,
+    @SerialName(value = "feedTitle") public val feedTitle: String? = null,
+    @SerialName(value = "feedLanguage") public val feedLanguage: String,
+    @SerialName(value = "chaptersUrl") public val chaptersUrl: String? = null,
+    @SerialName(value = "transcriptUrl") public val transcriptUrl: String? = null,
 )
 
-enum class Status {
+public enum class Status {
     Ended,
     Live
 }
 
-enum class Explicit(val code: Int) {
+public enum class Explicit(public val code: Int) {
     No(0),
     Yes(1)
 }
 
-enum class EpisodeType {
+public enum class EpisodeType {
     Full,
     Trailer,
     Bonus

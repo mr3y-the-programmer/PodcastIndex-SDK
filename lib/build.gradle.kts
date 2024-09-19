@@ -9,6 +9,7 @@ group = "com.mr3y.podcastindex"
 version = "1.0"
 
 kotlin {
+    explicitApi()
     jvmToolchain(17)
 
     jvm()

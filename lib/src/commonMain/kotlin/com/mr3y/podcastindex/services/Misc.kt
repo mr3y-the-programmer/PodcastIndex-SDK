@@ -13,11 +13,11 @@ import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import kotlinx.datetime.Instant
 
-typealias LanguageTag = String
+public typealias LanguageTag = String
 
-class Misc internal constructor(private val client: HttpClient) {
+public class Misc internal constructor(private val client: HttpClient) {
 
-    suspend fun getTrending(
+    public suspend fun getTrending(
         limit: Int = 0,
         since: Instant? = null,
         languages: List<LanguageTag> = emptyList(),
@@ -35,7 +35,7 @@ class Misc internal constructor(private val client: HttpClient) {
         }
     }
 
-    suspend fun getLiveEpisodes(
+    public suspend fun getLiveEpisodes(
         limit: Int = 0
     ): MultipleEpisodesResult {
         return withErrorHandling {
@@ -45,7 +45,7 @@ class Misc internal constructor(private val client: HttpClient) {
         }
     }
 
-    suspend fun getRandomEpisodes(
+    public suspend fun getRandomEpisodes(
         limit: Int = 0,
         languages: List<LanguageTag> = emptyList(),
         includeCategories: List<Category> = emptyList(),

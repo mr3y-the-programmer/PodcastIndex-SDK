@@ -1,6 +1,6 @@
 package com.mr3y.podcastindex.model
 
-enum class Medium(val value: String) {
+public enum class Medium(public val value: String) {
     Podcast("podcast"),
     Music("music"),
     Video("video"),
