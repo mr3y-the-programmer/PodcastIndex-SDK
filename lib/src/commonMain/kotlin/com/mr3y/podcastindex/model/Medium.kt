@@ -9,5 +9,5 @@ public enum class Medium(public val value: String) {
     Newsletter("newsletter"),
     Blog("blog"),
     Publisher("publisher"),
-    Course("course")
+    Course("course"),
 }

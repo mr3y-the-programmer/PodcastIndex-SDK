@@ -112,5 +112,5 @@ public enum class Category(public val id: Int, public val label: String) {
     WEATHER(109, "Weather"),
     TABLETOP(110, "Tabletop"),
     ROLE_PLAYING(111, "Role-Playing"),
-    CRYPTOCURRENCY(112, "Cryptocurrency")
+    CRYPTOCURRENCY(112, "Cryptocurrency"),
 }

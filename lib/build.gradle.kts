@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.poko)
+    alias(libs.plugins.spotless)
     id("convention.publication")
 }
 
@@ -32,5 +33,15 @@ kotlin {
         commonTest.dependencies {
             implementation(kotlin("test"))
         }
+    }
+}
+
+configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+    kotlin {
+        target(listOf("*.md", "**/*.kt", ".gitignore", "**/*.gradle.kts"))
+        ktlint()
+        trimTrailingWhitespace()
+        indentWithSpaces(4)
+        endWithNewline()
     }
 }

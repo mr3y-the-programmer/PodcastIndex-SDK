@@ -22,26 +22,22 @@ public class Misc internal constructor(private val client: HttpClient) {
         since: Instant? = null,
         languages: List<LanguageTag> = emptyList(),
         includeCategories: List<Category> = emptyList(),
-        excludeCategories: List<Category> = emptyList()
-    ): TrendingResult {
-        return withErrorHandling {
-            client.get("${PodcastIndexClient.BaseUrl}/podcasts/trending") {
-                parameterLimit(limit)
-                parameter("since", since?.toEpochMilliseconds())
-                parameterList("lang", languages)
-                parameterList("cat", includeCategories, transform = { it.id.toString() })
-                parameterList("notcat", excludeCategories, transform = { it.id.toString() })
-            }
+        excludeCategories: List<Category> = emptyList(),
+    ): TrendingResult = withErrorHandling {
+        client.get("${PodcastIndexClient.BaseUrl}/podcasts/trending") {
+            parameterLimit(limit)
+            parameter("since", since?.toEpochMilliseconds())
+            parameterList("lang", languages)
+            parameterList("cat", includeCategories, transform = { it.id.toString() })
+            parameterList("notcat", excludeCategories, transform = { it.id.toString() })
         }
     }
 
     public suspend fun getLiveEpisodes(
-        limit: Int = 0
-    ): MultipleEpisodesResult {
-        return withErrorHandling {
-            client.get("${PodcastIndexClient.BaseUrl}/episodes/live") {
-                parameterLimit(limit)
-            }
+        limit: Int = 0,
+    ): MultipleEpisodesResult = withErrorHandling {
+        client.get("${PodcastIndexClient.BaseUrl}/episodes/live") {
+            parameterLimit(limit)
         }
     }
 
@@ -50,16 +46,14 @@ public class Misc internal constructor(private val client: HttpClient) {
         languages: List<LanguageTag> = emptyList(),
         includeCategories: List<Category> = emptyList(),
         excludeCategories: List<Category> = emptyList(),
-        includeFullText: Boolean = false
-    ): MultipleEpisodesResult {
-        return withErrorHandling {
-            client.get("${PodcastIndexClient.BaseUrl}/episodes/random") {
-                parameterLimit(limit)
-                parameterList("lang", languages)
-                parameterList("cat", includeCategories, transform = { it.id.toString() })
-                parameterList("notcat", excludeCategories, transform = { it.id.toString() })
-                parameterBoolean("fulltext", includeFullText)
-            }
+        includeFullText: Boolean = false,
+    ): MultipleEpisodesResult = withErrorHandling {
+        client.get("${PodcastIndexClient.BaseUrl}/episodes/random") {
+            parameterLimit(limit)
+            parameterList("lang", languages)
+            parameterList("cat", includeCategories, transform = { it.id.toString() })
+            parameterList("notcat", excludeCategories, transform = { it.id.toString() })
+            parameterBoolean("fulltext", includeFullText)
         }
     }
 }

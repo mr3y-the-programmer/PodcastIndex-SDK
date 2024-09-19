@@ -4,5 +4,5 @@ public enum class Value {
     Any,
     Lightning,
     Hive,
-    WebMonetization
+    WebMonetization,
 }

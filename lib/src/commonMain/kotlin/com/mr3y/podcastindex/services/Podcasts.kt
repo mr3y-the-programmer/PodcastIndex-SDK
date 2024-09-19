@@ -12,44 +12,34 @@ import io.ktor.client.request.parameter
 
 public class Podcasts internal constructor(private val client: HttpClient) {
 
-    public suspend fun byFeedId(id: Int): SinglePodcastResult {
-        return withErrorHandling {
-            client.get("${PodcastIndexClient.BaseUrl}/podcasts/byfeedid") {
-                parameter("id", id)
-            }
+    public suspend fun byFeedId(id: Int): SinglePodcastResult = withErrorHandling {
+        client.get("${PodcastIndexClient.BaseUrl}/podcasts/byfeedid") {
+            parameter("id", id)
         }
     }
 
-    public suspend fun byFeedUrl(url: String): SinglePodcastResult {
-        return withErrorHandling {
-            client.get("${PodcastIndexClient.BaseUrl}/podcasts/byfeedurl") {
-                parameter("url", url)
-            }
+    public suspend fun byFeedUrl(url: String): SinglePodcastResult = withErrorHandling {
+        client.get("${PodcastIndexClient.BaseUrl}/podcasts/byfeedurl") {
+            parameter("url", url)
         }
     }
 
-    public suspend fun byItunesId(id: Int): SinglePodcastResult {
-        return withErrorHandling {
-            client.get("${PodcastIndexClient.BaseUrl}/podcasts/byitunesid") {
-                parameter("id", id)
-            }
+    public suspend fun byItunesId(id: Int): SinglePodcastResult = withErrorHandling {
+        client.get("${PodcastIndexClient.BaseUrl}/podcasts/byitunesid") {
+            parameter("id", id)
         }
     }
 
-    public suspend fun byGuid(guid: String): SinglePodcastResult {
-        return withErrorHandling {
-            client.get("${PodcastIndexClient.BaseUrl}/podcasts/byguid") {
-                parameter("guid", guid)
-            }
+    public suspend fun byGuid(guid: String): SinglePodcastResult = withErrorHandling {
+        client.get("${PodcastIndexClient.BaseUrl}/podcasts/byguid") {
+            parameter("guid", guid)
         }
     }
 
-    public suspend fun byMedium(medium: Medium, limit: Int = 0): MultiplePodcastsResult {
-        return withErrorHandling {
-            client.get("${PodcastIndexClient.BaseUrl}/podcasts/bymedium") {
-                parameter("medium", medium.value)
-                parameterLimit(limit)
-            }
+    public suspend fun byMedium(medium: Medium, limit: Int = 0): MultiplePodcastsResult = withErrorHandling {
+        client.get("${PodcastIndexClient.BaseUrl}/podcasts/bymedium") {
+            parameter("medium", medium.value)
+            parameterLimit(limit)
         }
     }
 }

@@ -38,5 +38,5 @@ public class PodcastIndexClientConfig {
 internal data class Authentication(
     val key: String,
     val secret: String,
-    val userAgent: String
+    val userAgent: String,
 )

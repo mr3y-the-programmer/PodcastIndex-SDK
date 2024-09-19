@@ -13,13 +13,13 @@ import kotlinx.serialization.Serializable
 @Poko
 public class MultipleEpisodesResult(
     @SerialName(value = "liveItems") public val liveItems: List<LiveEpisodeFeed>? = null,
-    @SerialName(value = "items") public val items: List<EpisodeFeed>
+    @SerialName(value = "items") public val items: List<EpisodeFeed>,
 )
 
 @Serializable
 @Poko
 public class SingleEpisodeResult(
-    @SerialName(value = "episode") public val episode: EpisodeFeed
+    @SerialName(value = "episode") public val episode: EpisodeFeed,
 )
 
 @Serializable
@@ -52,7 +52,7 @@ public class LiveEpisodeFeed(
     @SerialName(value = "feedLanguage") public val feedLanguage: String,
     @SerialName(value = "feedDuplicateOf") public val feedDuplicateOf: Int? = null,
     @SerialName(value = "chaptersUrl") public val chaptersUrl: String? = null,
-    @SerialName(value = "transcriptUrl") public val transcriptUrl: String? = null
+    @SerialName(value = "transcriptUrl") public val transcriptUrl: String? = null,
 )
 
 @Serializable
@@ -87,16 +87,16 @@ public class EpisodeFeed(
 
 public enum class Status {
     Ended,
-    Live
+    Live,
 }
 
 public enum class Explicit(public val code: Int) {
     No(0),
-    Yes(1)
+    Yes(1),
 }
 
 public enum class EpisodeType {
     Full,
     Trailer,
-    Bonus
+    Bonus,
 }

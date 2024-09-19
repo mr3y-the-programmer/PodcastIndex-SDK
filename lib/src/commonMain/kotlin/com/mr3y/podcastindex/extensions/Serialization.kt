@@ -47,9 +47,7 @@ internal class TypeSerializer : KSerializer<Type> {
 
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("Type", PrimitiveKind.INT)
 
-    override fun deserialize(decoder: Decoder): Type {
-        return Type.entries.first { it.code == decoder.decodeInt() }
-    }
+    override fun deserialize(decoder: Decoder): Type = Type.entries.first { it.code == decoder.decodeInt() }
 
     override fun serialize(encoder: Encoder, value: Type) {
         // Serialization isn't implemented right now as support for endpoints
@@ -61,9 +59,7 @@ internal class LockedSerializer : KSerializer<Locked> {
 
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("Locked", PrimitiveKind.INT)
 
-    override fun deserialize(decoder: Decoder): Locked {
-        return Locked.entries.first { it.code == decoder.decodeInt() }
-    }
+    override fun deserialize(decoder: Decoder): Locked = Locked.entries.first { it.code == decoder.decodeInt() }
 
     override fun serialize(encoder: Encoder, value: Locked) {
         // Serialization isn't implemented right now as support for endpoints
@@ -74,12 +70,10 @@ internal class LockedSerializer : KSerializer<Locked> {
 internal class EpisodeTypeSerializer : KSerializer<EpisodeType?> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("EpisodeType", PrimitiveKind.STRING)
 
-    override fun deserialize(decoder: Decoder): EpisodeType? {
-        return try {
-            EpisodeType.valueOf(decoder.decodeString().capitalize())
-        } catch (ex: IllegalArgumentException) {
-            null
-        }
+    override fun deserialize(decoder: Decoder): EpisodeType? = try {
+        EpisodeType.valueOf(decoder.decodeString().capitalize())
+    } catch (ex: IllegalArgumentException) {
+        null
     }
 
     override fun serialize(encoder: Encoder, value: EpisodeType?) {
@@ -91,9 +85,7 @@ internal class EpisodeTypeSerializer : KSerializer<EpisodeType?> {
 internal class EpisodeStatusSerializer : KSerializer<Status> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("EpisodeStatus", PrimitiveKind.STRING)
 
-    override fun deserialize(decoder: Decoder): Status {
-        return Status.valueOf(decoder.decodeString().capitalize())
-    }
+    override fun deserialize(decoder: Decoder): Status = Status.valueOf(decoder.decodeString().capitalize())
 
     override fun serialize(encoder: Encoder, value: Status) {
         // Serialization isn't implemented right now as support for endpoints

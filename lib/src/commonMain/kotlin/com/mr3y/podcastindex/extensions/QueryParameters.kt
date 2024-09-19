@@ -7,25 +7,29 @@ import io.ktor.client.request.parameter
 internal fun HttpRequestBuilder.parameterQuery(query: String) = parameter("q", query)
 
 internal fun HttpRequestBuilder.parameterValue(value: Value) {
-    if (value != Value.Any)
+    if (value != Value.Any) {
         parameter("val", value.name.lowercase())
+    }
 }
 
 internal fun HttpRequestBuilder.parameterLimit(limit: Int) {
-    if (limit > 0)
+    if (limit > 0) {
         parameter("max", limit)
+    }
 }
 
 internal fun <T> HttpRequestBuilder.parameterList(
     label: String,
     values: List<T>,
-    transform: ((T) -> CharSequence)? = null
+    transform: ((T) -> CharSequence)? = null,
 ) {
-    if (values.isNotEmpty())
+    if (values.isNotEmpty()) {
         parameter(label, values.joinToString(separator = ",", transform = transform))
+    }
 }
 
 internal fun HttpRequestBuilder.parameterBoolean(label: String, predicate: Boolean) {
-    if (predicate)
+    if (predicate) {
         parameter(label, true)
+    }
 }

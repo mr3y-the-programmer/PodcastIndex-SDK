@@ -1,6 +1,5 @@
 package com.mr3y.podcastindex.extensions
 
-import co.touchlab.kermit.Logger as KermitLogger
 import com.mr3y.podcastindex.Authentication
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.plugins.HttpRequestRetry
@@ -15,6 +14,7 @@ import io.ktor.serialization.kotlinx.json.json
 import io.ktor.util.sha1
 import kotlinx.datetime.Clock
 import kotlinx.serialization.json.Json
+import co.touchlab.kermit.Logger as KermitLogger
 
 internal fun HttpClientConfig<*>.installAuthenticationPlugin(authenticationInfo: Authentication) {
     // Add the necessary authentication headers to every request going out to PodcastIndex endpoints

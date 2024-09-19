@@ -21,18 +21,16 @@ public class Search internal constructor(private val client: HttpClient) {
         aponly: Boolean = false,
         returnCleanOnly: Boolean = false,
         includeSimilar: Boolean = false,
-        includeFullText: Boolean = false
-    ): MultiplePodcastsResult {
-        return withErrorHandling {
-            client.get("${PodcastIndexClient.BaseUrl}/search/byterm") {
-                parameterQuery(term)
-                parameterValue(hasValue)
-                parameterLimit(limit)
-                parameterBoolean("aponly", aponly)
-                parameterBoolean("clean", returnCleanOnly)
-                parameterBoolean("similar", includeSimilar)
-                parameterBoolean("fulltext", includeFullText)
-            }
+        includeFullText: Boolean = false,
+    ): MultiplePodcastsResult = withErrorHandling {
+        client.get("${PodcastIndexClient.BaseUrl}/search/byterm") {
+            parameterQuery(term)
+            parameterValue(hasValue)
+            parameterLimit(limit)
+            parameterBoolean("aponly", aponly)
+            parameterBoolean("clean", returnCleanOnly)
+            parameterBoolean("similar", includeSimilar)
+            parameterBoolean("fulltext", includeFullText)
         }
     }
 
@@ -42,31 +40,27 @@ public class Search internal constructor(private val client: HttpClient) {
         limit: Int = 0,
         returnCleanOnly: Boolean = false,
         includeSimilar: Boolean = false,
-        includeFullText: Boolean = false
-    ): MultiplePodcastsResult {
-        return withErrorHandling {
-            client.get("${PodcastIndexClient.BaseUrl}/search/bytitle") {
-                parameterQuery(title)
-                parameterValue(hasValue)
-                parameterLimit(limit)
-                parameterBoolean("clean", returnCleanOnly)
-                parameterBoolean("similar", includeSimilar)
-                parameterBoolean("fulltext", includeFullText)
-            }
+        includeFullText: Boolean = false,
+    ): MultiplePodcastsResult = withErrorHandling {
+        client.get("${PodcastIndexClient.BaseUrl}/search/bytitle") {
+            parameterQuery(title)
+            parameterValue(hasValue)
+            parameterLimit(limit)
+            parameterBoolean("clean", returnCleanOnly)
+            parameterBoolean("similar", includeSimilar)
+            parameterBoolean("fulltext", includeFullText)
         }
     }
 
     public suspend fun forEpisodesByPerson(
         name: String,
         limit: Int = 0,
-        includeFullText: Boolean = false
-    ): MultipleEpisodesResult {
-        return withErrorHandling {
-            client.get("${PodcastIndexClient.BaseUrl}/search/byperson") {
-                parameterQuery(name)
-                parameterLimit(limit)
-                parameterBoolean("fulltext", includeFullText)
-            }
+        includeFullText: Boolean = false,
+    ): MultipleEpisodesResult = withErrorHandling {
+        client.get("${PodcastIndexClient.BaseUrl}/search/byperson") {
+            parameterQuery(name)
+            parameterLimit(limit)
+            parameterBoolean("fulltext", includeFullText)
         }
     }
 
@@ -76,17 +70,15 @@ public class Search internal constructor(private val client: HttpClient) {
         limit: Int = 0,
         aponly: Boolean = false,
         returnCleanOnly: Boolean = false,
-        includeFullText: Boolean = false
-    ): MultiplePodcastsResult {
-        return withErrorHandling {
-            client.get("${PodcastIndexClient.BaseUrl}/search/music/byterm") {
-                parameterQuery(term)
-                parameterValue(hasValue)
-                parameterLimit(limit)
-                parameterBoolean("aponly", aponly)
-                parameterBoolean("clean", returnCleanOnly)
-                parameterBoolean("fulltext", includeFullText)
-            }
+        includeFullText: Boolean = false,
+    ): MultiplePodcastsResult = withErrorHandling {
+        client.get("${PodcastIndexClient.BaseUrl}/search/music/byterm") {
+            parameterQuery(term)
+            parameterValue(hasValue)
+            parameterLimit(limit)
+            parameterBoolean("aponly", aponly)
+            parameterBoolean("clean", returnCleanOnly)
+            parameterBoolean("fulltext", includeFullText)
         }
     }
 }

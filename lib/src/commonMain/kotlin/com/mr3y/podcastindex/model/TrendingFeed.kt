@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @Poko
 public class TrendingResult(
-    @SerialName(value = "feeds") public val feeds: List<TrendingFeed>
+    @SerialName(value = "feeds") public val feeds: List<TrendingFeed>,
 )
 
 @Serializable

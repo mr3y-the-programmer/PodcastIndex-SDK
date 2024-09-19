@@ -27,7 +27,7 @@ public fun PodcastIndexClient(
     authKey: String,
     authSecret: String,
     userAgent: String,
-    block: PodcastIndexClientConfig.() -> Unit = {}
+    block: PodcastIndexClientConfig.() -> Unit = {},
 ): PodcastIndexClient {
     require(userAgent.isNotBlank()) { "User agent cannot be blank" }
     val auth = Authentication(authKey, authSecret, userAgent)
@@ -40,7 +40,7 @@ public fun PodcastIndexClient(
  */
 public class PodcastIndexClient internal constructor(
     private val authentication: Authentication,
-    private val config: PodcastIndexClientConfig
+    private val config: PodcastIndexClientConfig,
 ) {
 
     private val client: HttpClient = HttpClient(defaultHttpClientEngineFactory()) {

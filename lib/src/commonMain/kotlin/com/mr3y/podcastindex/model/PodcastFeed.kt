@@ -11,18 +11,18 @@ import kotlinx.serialization.Serializable
 @Serializable
 @Poko
 public class MultiplePodcastsResult(
-    @SerialName(value = "feeds") public val feeds: List<PodcastFeed>
+    @SerialName(value = "feeds") public val feeds: List<PodcastFeed>,
 )
 
 @Serializable
 @Poko
 public class SinglePodcastResult(
-    @SerialName(value = "feed") public val feed: PodcastFeed
+    @SerialName(value = "feed") public val feed: PodcastFeed,
 )
 
 @Serializable
 @Poko
-public class PodcastFeed (
+public class PodcastFeed(
     @SerialName(value = "id") public val id: Int,
     @SerialName(value = "podcastGuid") public val podcastGuid: String,
     @SerialName(value = "title") public val title: String,
@@ -52,15 +52,15 @@ public class PodcastFeed (
     @SerialName(value = "parseErrors") public val parseErrors: Int,
     @SerialName(value = "locked") @Serializable(LockedSerializer::class) public val locked: Locked,
     @SerialName(value = "imageUrlHash") public val imageUrlHash: Int,
-    @SerialName(value = "newestItemPubdate") @Serializable(InstantSerializer::class) public val newestItemPubdate: Instant? = null
+    @SerialName(value = "newestItemPubdate") @Serializable(InstantSerializer::class) public val newestItemPubdate: Instant? = null,
 )
 
 public enum class Type(public val code: Int) {
     RSS(0),
-    Atom(1)
+    Atom(1),
 }
 
 public enum class Locked(public val code: Int) {
     No(0),
-    Yes(1)
+    Yes(1),
 }
