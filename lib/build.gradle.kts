@@ -1,3 +1,7 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.kotlinx.serialization)
@@ -11,7 +15,17 @@ version = "1.0"
 
 kotlin {
     explicitApi()
-    jvmToolchain(17)
+    jvmToolchain(libs.versions.jvmToolchain.get().toInt())
+
+    val kotlinTargetVersion = libs.versions.kotlinTarget.map { KotlinVersion.fromVersion(it.toKotlinMinor()) }
+
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+    compilerOptions {
+        languageVersion = kotlinTargetVersion
+        apiVersion = kotlinTargetVersion
+        freeCompilerArgs.add(libs.versions.jdkTarget.map { "-Xjdk-release=${it.toJdkTarget()}" })
+    }
+    coreLibrariesVersion = libs.versions.kotlinTarget.get()
 
     jvm()
 
@@ -36,6 +50,17 @@ kotlin {
     }
 }
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    compilerOptions {
+        jvmTarget = libs.versions.jdkTarget.map { JvmTarget.fromTarget(it.toJdkTarget()) }
+    }
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    sourceCompatibility = libs.versions.jdkTarget.map { it.toJdkTarget() }.get()
+    targetCompatibility = libs.versions.jdkTarget.map { it.toJdkTarget() }.get()
+}
+
 configure<com.diffplug.gradle.spotless.SpotlessExtension> {
     kotlin {
         target(listOf("*.md", "**/*.kt", ".gitignore", "**/*.gradle.kts"))
@@ -45,3 +70,7 @@ configure<com.diffplug.gradle.spotless.SpotlessExtension> {
         endWithNewline()
     }
 }
+
+private fun String.toJdkTarget() = if (toInt() <= 8) "1.$this" else this
+
+private fun String.toKotlinMinor() = split(".").take(2).joinToString(".")
