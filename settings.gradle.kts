@@ -42,5 +42,5 @@ toolchainManagement {
 }
 
 includeBuild("convention-plugins")
-include(":lib")
+include(":podcastindex-sdk")
 

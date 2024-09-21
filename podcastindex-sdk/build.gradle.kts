@@ -7,11 +7,8 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.poko)
     alias(libs.plugins.spotless)
-    id("convention.publication")
+    alias(libs.plugins.vanniktech.maven)
 }
-
-group = "com.mr3y.podcastindex"
-version = "1.0"
 
 kotlin {
     explicitApi()

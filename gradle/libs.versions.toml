@@ -10,6 +10,7 @@ kotlinx-datetime = "0.6.1"
 poko = "0.17.0"
 kermit = "2.0.4"
 spotless = "7.0.0.BETA2"
+vanniktech-maven = "0.29.0"
 
 [libraries]
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
@@ -27,3 +28,4 @@ multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotl
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 poko = { id = "dev.drewhamilton.poko", version.ref = "poko" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+vanniktech-maven = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-maven" }
