@@ -2,6 +2,7 @@
 
 ## About
 Unofficial Type-safe PodcastIndex SDK for Kotlin Multiplatform Supporting Android/Desktop/iOS platforms.
+
 [Podcast Index](https://podcastindex.org/) is a large, categorized, and free index of podcasts. It offers a REST API to access the index. This SDK is a wrapper around the API that enables developers building podcast experiences type-safe access by leveraging Kotlin. Additionally, it handles things like Authentication, Serialization, logging, retrying failed requests, and more out of the box for you.
 
 ## Download
@@ -72,7 +73,9 @@ val result: MultipleEpisodesResult = client.search.forEpisodesByPerson(name = "j
 val result: MultiplePodcastsResult = client.search.forMusicPodcastsByTerm(term = "music")
 ````
 </details>
-Similarly, accessing **Podcasts**, **Episodes** endpoints follows the same approach.
+
+Similarly, accessing **Podcasts**, **Episodes** services/endpoints follows the same approach.
+
 ## Support table
 Some endpoints are still work-in-progress and not implemented yet (⌛)
 |                            | 🔰 Status |                         | 🔰 Status |
@@ -106,17 +109,17 @@ Some endpoints are still work-in-progress and not implemented yet (⌛)
 
 ## License
 ```
-   Copyright 2024 MR3Y
+Copyright 2024 MR3Y
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-       http://www.apache.org/licenses/LICENSE-2.0
+    http://www.apache.org/licenses/LICENSE-2.0
 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 ```
