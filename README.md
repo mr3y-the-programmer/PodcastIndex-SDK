@@ -1,5 +1,23 @@
 # PodcastIndex-SDK
 
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.mr3y-the-programmer/podcastindex-sdk?label=Maven%20Central)](https://search.maven.org/artifact/io.github.mr3y-the-programmer/podcastindex-sdk)
+![Github Actions](https://github.com/mr3y-the-programmer/PodcastIndex-SDK/actions/workflows/build.yml/badge.svg)
+![badge-android](https://img.shields.io/badge/platform-android-6EDB8D.svg?style=flat)
+![badge-ios](https://img.shields.io/badge/platform-ios-CDCDCD.svg?style=flat)
+![badge-desktop](https://img.shields.io/badge/platform-desktop-DB413D.svg?style=flat)
+[![GitHub License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
+
+<p align="center">
+  Jump to:
+  <a href="#about">About</a> |
+  <a href="#download">Download</a> |
+  <a href="#how-to-use">How to use</a> |
+  <a href="#support-table">Roadmap</a> |
+  <a href="#license">License</a>
+</p>
+
+<hr>
+
 ## About
 Unofficial Type-safe PodcastIndex SDK for Kotlin Multiplatform Supporting Android/Desktop/iOS platforms.
 
