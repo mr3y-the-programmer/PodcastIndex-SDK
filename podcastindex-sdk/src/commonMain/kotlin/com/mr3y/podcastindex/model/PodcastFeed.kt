@@ -51,7 +51,7 @@ public class PodcastFeed(
     @SerialName(value = "crawlErrors") public val crawlErrors: Int,
     @SerialName(value = "parseErrors") public val parseErrors: Int,
     @SerialName(value = "locked") @Serializable(LockedSerializer::class) public val locked: Locked,
-    @SerialName(value = "imageUrlHash") public val imageUrlHash: Int,
+    @SerialName(value = "imageUrlHash") public val imageUrlHash: Long,
     @SerialName(value = "newestItemPubdate") @Serializable(InstantSerializer::class) public val newestItemPubdate: Instant? = null,
 )
 
