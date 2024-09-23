@@ -12,6 +12,7 @@ import io.ktor.client.request.headers
 import io.ktor.http.HttpStatusCode
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.util.sha1
+import io.ktor.utils.io.core.toByteArray
 import kotlinx.datetime.Clock
 import kotlinx.serialization.json.Json
 import co.touchlab.kermit.Logger as KermitLogger

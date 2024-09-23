@@ -25,6 +25,16 @@ kotlin {
     coreLibrariesVersion = libs.versions.kotlinTarget.get()
 
     jvm()
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64(),
+    ).forEach {
+        it.binaries.framework {
+            baseName = "podcastindex-sdk"
+            isStatic = true
+        }
+    }
 
     sourceSets {
         commonMain.dependencies {
@@ -39,6 +49,10 @@ kotlin {
 
         jvmMain.dependencies {
             implementation(libs.ktor.okhttp)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.ktor.darwin)
         }
 
         commonTest.dependencies {
