@@ -12,6 +12,7 @@
   <a href="#about">About</a> |
   <a href="#download">Download</a> |
   <a href="#how-to-use">How to use</a> |
+  <a href="#advanced">Advanced</a> |
   <a href="#support-table">Roadmap</a> |
   <a href="#license">License</a>
 </p>
@@ -21,7 +22,7 @@
 ## About
 Unofficial Type-safe PodcastIndex SDK for Kotlin Multiplatform Supporting Android/Desktop/iOS platforms.
 
-[Podcast Index](https://podcastindex.org/) is a large, categorized, and free index of podcasts. It offers a REST API to access the index. This SDK is a wrapper around the API that enables developers building podcast experiences type-safe access by leveraging Kotlin. Additionally, it handles things like Authentication, Serialization, logging, retrying failed requests, and more out of the box for you.
+[Podcast Index](https://podcastindex.org/) is a large, categorized, and free index of podcasts. It offers a REST API to access the index. This SDK is a wrapper around the API that offers idiomatic Kotlin API plus handling things like Authentication, retrying failed authenticated requests in odd scenarios, Logging, Serialization, and more for developers looking to build podcast experiences.
 
 ## Download
 Add the Maven Central repository if it is not already there:
@@ -49,14 +50,12 @@ dependencies {
    - Kotlin 1.9+.
 
 ## How to use
-1. Initialize client instance by calling `PodcastIndexClient`:
+1. Initialize client instance by calling `PodcastIndexClient` with your credentials:
 ```kotlin
-val client = PodcastIndexClient(/*your API key*/, /*your API secret*/, /*User agent (i.e "MyPodcastApp/1.2"*/) {
-    // Optionally, this function provides a lambda that allows you to customize/configure the client 
-    enableLogging = if (BuildConfig.DEBUG) true else false
-    // you can also configure things like loggingTag, maxRetries, defaultTimeout..etc
-}
+val client = PodcastIndexClient(BuildConfig.API_KEY, BuildConfig.API_SECRET, userAgent = "MyPodcastApp/1.2")
 ```
+That's it, now you're ready to start interacting with different SDK services, `PodcastIndexClient` function also takes an optional config lambda parameter which allows you to enable/disable some properties, See <a href="#advanced">Advanced</a> section for more details 
+
 ### Search Service
 <details>
   <summary><b>Search Podcasts by term: Click Here to See</b></summary>
@@ -93,6 +92,40 @@ val result: MultiplePodcastsResult = client.search.forMusicPodcastsByTerm(term =
 </details>
 
 Similarly, accessing **Podcasts**, **Episodes** services/endpoints follows the same approach.
+
+## Advanced
+- Enable logging to get better insights about outgoing requests which might be helpful for debugging (Default is false):
+```kotlin
+val client = PodcastIndexClient(...) {
+    enableLogging = if (BuildConfig.DEBUG) true else false
+}
+```
+Sensitive information like `API_KEY` & `API_SECRET` are masked and won't be printed out in logs so, you can enable this safely.
+
+- Change the default tag used for logging (Default is "PodcastIndexSDK"):
+```kotlin
+val client = PodcastIndexClient(...) {
+    loggingTag = "MyCustomTag"
+}
+```
+- Specify the max number of retries when a request fails (Default is 3):
+```kotlin
+val client = PodcastIndexClient(...) {
+    maxRetries = 5
+}
+```
+- Enabling/Disabling request timeout (Default is true):
+```kotlin
+val client = PodcastIndexClient(...) {
+    enableTimeout = false
+}
+```
+- Specify the default timeout in milliseconds (Default is 10 seconds):
+```kotlin
+val client = PodcastIndexClient(...) {
+    defaultTimeout = 5_000L // 5 seconds
+}
+```
 
 ## Support table
 Some endpoints are still work-in-progress and not implemented yet (⌛)
