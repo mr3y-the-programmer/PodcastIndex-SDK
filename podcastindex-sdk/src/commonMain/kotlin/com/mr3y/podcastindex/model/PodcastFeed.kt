@@ -23,7 +23,7 @@ public class SinglePodcastResult(
 @Serializable
 @Poko
 public class PodcastFeed(
-    @SerialName(value = "id") public val id: Int,
+    @SerialName(value = "id") public val id: Long,
     @SerialName(value = "podcastGuid") public val podcastGuid: String,
     @SerialName(value = "title") public val title: String,
     @SerialName(value = "url") public val url: String,
@@ -40,7 +40,7 @@ public class PodcastFeed(
     @SerialName(value = "lastGoodHttpStatusTime") @Serializable(InstantSerializer::class) public val lastGoodHttpStatusTime: Instant,
     @SerialName(value = "lastHttpStatus") public val lastHttpStatus: Int,
     @SerialName(value = "contentType") public val contentType: String,
-    @SerialName(value = "itunesId") public val itunesId: Int? = null,
+    @SerialName(value = "itunesId") public val itunesId: Long? = null,
     @SerialName(value = "generator") public val generator: String,
     @SerialName(value = "language") public val language: String,
     @SerialName(value = "explicit") public val explicit: Boolean,

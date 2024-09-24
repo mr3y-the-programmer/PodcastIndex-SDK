@@ -12,7 +12,7 @@ import io.ktor.client.request.parameter
 
 public class Podcasts internal constructor(private val client: HttpClient) {
 
-    public suspend fun byFeedId(id: Int): SinglePodcastResult = withErrorHandling {
+    public suspend fun byFeedId(id: Long): SinglePodcastResult = withErrorHandling {
         client.get("${PodcastIndexClient.BaseUrl}/podcasts/byfeedid") {
             parameter("id", id)
         }
@@ -24,7 +24,7 @@ public class Podcasts internal constructor(private val client: HttpClient) {
         }
     }
 
-    public suspend fun byItunesId(id: Int): SinglePodcastResult = withErrorHandling {
+    public suspend fun byItunesId(id: Long): SinglePodcastResult = withErrorHandling {
         client.get("${PodcastIndexClient.BaseUrl}/podcasts/byitunesid") {
             parameter("id", id)
         }
