@@ -15,7 +15,7 @@ public class MultipleEpisodesResult(
     @SerialName(value = "liveItems") public val liveItems: List<LiveEpisodeFeed>? = null,
     @SerialName(value = "items") public val items: List<EpisodeFeed>,
     @SerialName(value = "count") public val count: Int,
-    @SerialName(value = "description") public val description: String
+    @SerialName(value = "description") public val description: String,
 )
 
 @Serializable
@@ -92,7 +92,7 @@ public class EpisodeFeed(
 @Poko
 public class Transcript(
     @SerialName(value = "url") public val url: String,
-    @SerialName(value = "type") public val type: String
+    @SerialName(value = "type") public val type: String,
 )
 
 public enum class Status {

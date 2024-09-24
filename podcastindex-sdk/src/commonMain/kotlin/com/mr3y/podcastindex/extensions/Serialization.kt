@@ -101,11 +101,9 @@ internal class CategoriesSerializer : KSerializer<List<Category>> {
     private val mapSerializer = MapSerializer(Int.serializer(), String.serializer())
     override val descriptor: SerialDescriptor = mapSerializer.descriptor
 
-    override fun deserialize(decoder: Decoder): List<Category> {
-        return mapSerializer
-            .deserialize(decoder)
-            .map { (id, _) -> Category.entries.first { it.id == id } }
-    }
+    override fun deserialize(decoder: Decoder): List<Category> = mapSerializer
+        .deserialize(decoder)
+        .map { (id, _) -> Category.entries.first { it.id == id } }
 
     override fun serialize(encoder: Encoder, value: List<Category>) {
         // Serialization isn't implemented right now as support for endpoints

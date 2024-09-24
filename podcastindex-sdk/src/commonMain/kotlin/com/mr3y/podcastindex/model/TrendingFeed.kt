@@ -12,7 +12,7 @@ import kotlinx.serialization.Serializable
 public class TrendingResult(
     @SerialName(value = "feeds") public val feeds: List<TrendingFeed>,
     @SerialName(value = "count") public val count: Int,
-    @SerialName(value = "description") public val description: String
+    @SerialName(value = "description") public val description: String,
 )
 
 @Serializable
@@ -29,5 +29,5 @@ public class TrendingFeed(
     @SerialName(value = "itunesId") public val itunesId: Long? = null,
     @SerialName(value = "trendScore") public val trendScore: Int,
     @SerialName(value = "language") public val language: String,
-    @SerialName(value = "categories") @Serializable(CategoriesSerializer::class) public val categories: List<Category>?
+    @SerialName(value = "categories") @Serializable(CategoriesSerializer::class) public val categories: List<Category>?,
 )

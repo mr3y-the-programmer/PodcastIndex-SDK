@@ -14,14 +14,14 @@ import kotlinx.serialization.Serializable
 public class MultiplePodcastsResult(
     @SerialName(value = "feeds") public val feeds: List<PodcastFeed>,
     @SerialName(value = "count") public val count: Int,
-    @SerialName(value = "description") public val description: String
+    @SerialName(value = "description") public val description: String,
 )
 
 @Serializable
 @Poko
 public class SinglePodcastResult(
     @SerialName(value = "feed") public val feed: PodcastFeed,
-    @SerialName(value = "description") public val description: String
+    @SerialName(value = "description") public val description: String,
 )
 
 @Serializable
@@ -98,7 +98,7 @@ public class Value4ValueDestination(
     @SerialName(value = "split") public val split: Int,
     @SerialName(value = "fee") public val fee: Boolean? = null,
     @SerialName(value = "customKey") public val customKey: String? = null,
-    @SerialName(value = "customValue") public val customValue: String? = null
+    @SerialName(value = "customValue") public val customValue: String? = null,
 )
 
 @Serializable
