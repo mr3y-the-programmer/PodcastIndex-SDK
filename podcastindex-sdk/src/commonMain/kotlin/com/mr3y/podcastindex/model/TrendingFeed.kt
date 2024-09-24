@@ -1,5 +1,6 @@
 package com.mr3y.podcastindex.model
 
+import com.mr3y.podcastindex.extensions.CategoriesSerializer
 import com.mr3y.podcastindex.extensions.InstantSerializer
 import dev.drewhamilton.poko.Poko
 import kotlinx.datetime.Instant
@@ -10,6 +11,8 @@ import kotlinx.serialization.Serializable
 @Poko
 public class TrendingResult(
     @SerialName(value = "feeds") public val feeds: List<TrendingFeed>,
+    @SerialName(value = "count") public val count: Int,
+    @SerialName(value = "description") public val description: String
 )
 
 @Serializable
@@ -26,4 +29,5 @@ public class TrendingFeed(
     @SerialName(value = "itunesId") public val itunesId: Long? = null,
     @SerialName(value = "trendScore") public val trendScore: Int,
     @SerialName(value = "language") public val language: String,
+    @SerialName(value = "categories") @Serializable(CategoriesSerializer::class) public val categories: List<Category>?
 )

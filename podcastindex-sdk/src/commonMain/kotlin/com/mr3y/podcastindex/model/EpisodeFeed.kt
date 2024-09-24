@@ -14,6 +14,8 @@ import kotlinx.serialization.Serializable
 public class MultipleEpisodesResult(
     @SerialName(value = "liveItems") public val liveItems: List<LiveEpisodeFeed>? = null,
     @SerialName(value = "items") public val items: List<EpisodeFeed>,
+    @SerialName(value = "count") public val count: Int,
+    @SerialName(value = "description") public val description: String
 )
 
 @Serializable
@@ -46,11 +48,11 @@ public class LiveEpisodeFeed(
     @SerialName(value = "episodeType") @Serializable(EpisodeTypeSerializer::class) public val episodeType: EpisodeType? = null,
     @SerialName(value = "season") public val season: Int? = null,
     @SerialName(value = "image") public val image: String,
-    @SerialName(value = "feedItunesId") public val feedItunesId: Int? = null,
+    @SerialName(value = "feedItunesId") public val feedItunesId: Long? = null,
     @SerialName(value = "feedImage") public val feedImage: String,
-    @SerialName(value = "feedId") public val feedId: Int,
+    @SerialName(value = "feedId") public val feedId: Long,
     @SerialName(value = "feedLanguage") public val feedLanguage: String,
-    @SerialName(value = "feedDuplicateOf") public val feedDuplicateOf: Int? = null,
+    @SerialName(value = "feedDuplicateOf") public val feedDuplicateOf: Long? = null,
     @SerialName(value = "chaptersUrl") public val chaptersUrl: String? = null,
     @SerialName(value = "transcriptUrl") public val transcriptUrl: String? = null,
 )
@@ -74,15 +76,23 @@ public class EpisodeFeed(
     @SerialName(value = "episodeType") @Serializable(EpisodeTypeSerializer::class) public val episodeType: EpisodeType? = null,
     @SerialName(value = "season") public val season: Int? = null,
     @SerialName(value = "image") public val image: String,
-    @SerialName(value = "feedItunesId") public val feedItunesId: Int? = null,
+    @SerialName(value = "feedItunesId") public val feedItunesId: Long? = null,
     @SerialName(value = "feedImage") public val feedImage: String,
-    @SerialName(value = "feedId") public val feedId: Int,
+    @SerialName(value = "feedId") public val feedId: Long,
     @SerialName(value = "feedUrl") public val feedUrl: String? = null,
     @SerialName(value = "feedAuthor") public val feedAuthor: String? = null,
     @SerialName(value = "feedTitle") public val feedTitle: String? = null,
     @SerialName(value = "feedLanguage") public val feedLanguage: String,
     @SerialName(value = "chaptersUrl") public val chaptersUrl: String? = null,
     @SerialName(value = "transcriptUrl") public val transcriptUrl: String? = null,
+    @SerialName(value = "transcripts") public val transcripts: List<Transcript>? = null,
+)
+
+@Serializable
+@Poko
+public class Transcript(
+    @SerialName(value = "url") public val url: String,
+    @SerialName(value = "type") public val type: String
 )
 
 public enum class Status {

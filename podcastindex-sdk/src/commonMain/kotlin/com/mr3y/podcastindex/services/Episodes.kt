@@ -15,7 +15,7 @@ import kotlinx.datetime.Instant
 public class Episodes internal constructor(private val client: HttpClient) {
 
     public suspend fun byFeedId(
-        ids: List<Int>,
+        ids: List<Long>,
         since: Instant? = null,
         limit: Int = 0,
         enclosureUrl: String? = null,
@@ -59,7 +59,7 @@ public class Episodes internal constructor(private val client: HttpClient) {
     }
 
     public suspend fun byFeedItunesId(
-        id: Int,
+        id: Long,
         since: Instant? = null,
         limit: Int = 0,
         enclosureUrl: String? = null,
@@ -86,7 +86,7 @@ public class Episodes internal constructor(private val client: HttpClient) {
 
     public suspend fun byGuidAndFeedId(
         guid: String,
-        feedId: Int,
+        feedId: Long,
         includeFullText: Boolean = false,
     ): SingleEpisodeResult = withErrorHandling {
         client.get("${PodcastIndexClient.BaseUrl}/episodes/byguid") {

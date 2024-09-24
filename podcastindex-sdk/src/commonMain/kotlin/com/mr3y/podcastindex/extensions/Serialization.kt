@@ -1,5 +1,6 @@
 package com.mr3y.podcastindex.extensions
 
+import com.mr3y.podcastindex.model.Category
 import com.mr3y.podcastindex.model.EpisodeType
 import com.mr3y.podcastindex.model.Explicit
 import com.mr3y.podcastindex.model.Locked
@@ -7,6 +8,8 @@ import com.mr3y.podcastindex.model.Status
 import com.mr3y.podcastindex.model.Type
 import kotlinx.datetime.Instant
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.builtins.MapSerializer
+import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
@@ -88,6 +91,23 @@ internal class EpisodeStatusSerializer : KSerializer<Status> {
     override fun deserialize(decoder: Decoder): Status = Status.valueOf(decoder.decodeString().capitalize())
 
     override fun serialize(encoder: Encoder, value: Status) {
+        // Serialization isn't implemented right now as support for endpoints
+        // that allows writing/updating to the Index hasn't been added yet
+    }
+}
+
+internal class CategoriesSerializer : KSerializer<List<Category>> {
+
+    private val mapSerializer = MapSerializer(Int.serializer(), String.serializer())
+    override val descriptor: SerialDescriptor = mapSerializer.descriptor
+
+    override fun deserialize(decoder: Decoder): List<Category> {
+        return mapSerializer
+            .deserialize(decoder)
+            .map { (id, _) -> Category.entries.first { it.id == id } }
+    }
+
+    override fun serialize(encoder: Encoder, value: List<Category>) {
         // Serialization isn't implemented right now as support for endpoints
         // that allows writing/updating to the Index hasn't been added yet
     }
