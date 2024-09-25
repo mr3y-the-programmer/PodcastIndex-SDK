@@ -50,7 +50,10 @@ internal class TypeSerializer : KSerializer<Type> {
 
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("Type", PrimitiveKind.INT)
 
-    override fun deserialize(decoder: Decoder): Type = Type.entries.first { it.code == decoder.decodeInt() }
+    override fun deserialize(decoder: Decoder): Type {
+        val code = decoder.decodeInt()
+        return Type.entries.first { it.code == code }
+    }
 
     override fun serialize(encoder: Encoder, value: Type) {
         // Serialization isn't implemented right now as support for endpoints
@@ -62,7 +65,10 @@ internal class LockedSerializer : KSerializer<Locked> {
 
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("Locked", PrimitiveKind.INT)
 
-    override fun deserialize(decoder: Decoder): Locked = Locked.entries.first { it.code == decoder.decodeInt() }
+    override fun deserialize(decoder: Decoder): Locked {
+        val code = decoder.decodeInt()
+        return Locked.entries.first { it.code == code }
+    }
 
     override fun serialize(encoder: Encoder, value: Locked) {
         // Serialization isn't implemented right now as support for endpoints

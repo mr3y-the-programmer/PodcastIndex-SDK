@@ -46,7 +46,7 @@ public class PodcastFeed(
     @SerialName(value = "contentType") public val contentType: String,
     @SerialName(value = "itunesId") public val itunesId: Long? = null,
     @SerialName(value = "itunesType") public val itunesType: String? = null,
-    @SerialName(value = "generator") public val generator: String,
+    @SerialName(value = "generator") public val generator: String?,
     @SerialName(value = "language") public val language: String,
     @SerialName(value = "explicit") public val explicit: Boolean? = null,
     @SerialName(value = "type") @Serializable(TypeSerializer::class) public val type: Type,
