@@ -48,6 +48,7 @@ dependencies {
 **Compatibility**:
    - Java 8+.
    - Kotlin 1.9+.
+   - Ktor 2.
 
 ## How to use
 1. Initialize client instance by calling `PodcastIndexClient` with your credentials:
