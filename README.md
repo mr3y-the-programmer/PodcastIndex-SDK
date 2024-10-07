@@ -6,6 +6,7 @@
 ![badge-ios](https://img.shields.io/badge/platform-ios-CDCDCD.svg?style=flat)
 ![badge-desktop](https://img.shields.io/badge/platform-desktop-DB413D.svg?style=flat)
 [![GitHub License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
+<a href="https://mailchi.mp/kotlinweekly/kotlin-weekly-426"><img alt="Kotlin Weekly" src="https://img.shields.io/badge/Kotlin_Weekly-%23426-purple"/></a>
 
 <p align="center">
   Jump to:
