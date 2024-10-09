@@ -26,12 +26,14 @@ public class Recent internal constructor(private val client: HttpClient) {
     ): MultipleEpisodesResult = withErrorHandling {
         client.get("${PodcastIndexClient.BaseUrl}/recent/episodes") {
             parameter("excludeString", ignoreContainsWord)
-            parameter("before", offset?.let {
-                when (it) {
-                    is Offset.Id -> it.beforeId
-                    is Offset.Time -> it.before.toEpochMilliseconds()
-                }
-            }
+            parameter(
+                "before",
+                offset?.let {
+                    when (it) {
+                        is Offset.Id -> it.beforeId
+                        is Offset.Time -> it.before.toEpochMilliseconds()
+                    }
+                },
             )
             parameterLimit(limit)
             parameterBoolean("fulltext", includeFullText)
