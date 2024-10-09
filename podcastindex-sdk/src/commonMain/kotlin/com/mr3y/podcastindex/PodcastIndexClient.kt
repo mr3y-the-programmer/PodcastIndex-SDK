@@ -10,6 +10,7 @@ import com.mr3y.podcastindex.services.Misc
 import com.mr3y.podcastindex.services.Podcasts
 import com.mr3y.podcastindex.services.Recent
 import com.mr3y.podcastindex.services.Search
+import com.mr3y.podcastindex.services.Value
 import io.ktor.client.HttpClient
 
 /**
@@ -63,6 +64,8 @@ public class PodcastIndexClient internal constructor(
     public val episodes: Episodes = Episodes(client)
 
     public val recent: Recent = Recent(client)
+
+    public val value: Value = Value(client)
 
     public val misc: Misc = Misc(client)
 

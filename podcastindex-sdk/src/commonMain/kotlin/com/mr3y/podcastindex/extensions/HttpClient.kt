@@ -21,12 +21,14 @@ internal fun HttpClientConfig<*>.installAuthenticationPlugin(authenticationInfo:
     // Add the necessary authentication headers to every request going out to PodcastIndex endpoints
     val requestAuthenticationPlugin = createClientPlugin("requestAuthenticatorPlugin") {
         onRequest { request, _ ->
-            request.headers {
-                val epoch = (Clock.System.now().toEpochMilliseconds() / 1000)
-                append("User-Agent", authenticationInfo.userAgent)
-                append("X-Auth-Date", epoch.toString())
-                append("X-Auth-Key", authenticationInfo.key)
-                append("Authorization", authHeader(epoch, authenticationInfo.key, authenticationInfo.secret))
+            if (request.url.pathSegments.drop(3)[0] != "value") {
+                request.headers {
+                    val epoch = (Clock.System.now().toEpochMilliseconds() / 1000)
+                    append("User-Agent", authenticationInfo.userAgent)
+                    append("X-Auth-Date", epoch.toString())
+                    append("X-Auth-Key", authenticationInfo.key)
+                    append("Authorization", authHeader(epoch, authenticationInfo.key, authenticationInfo.secret))
+                }
             }
         }
     }
@@ -36,12 +38,14 @@ internal fun HttpClientConfig<*>.installAuthenticationPlugin(authenticationInfo:
 internal fun HttpClientConfig<*>.installRetryPlugin(authenticationInfo: Authentication, maxRetries: Int) {
     install(HttpRequestRetry) {
         modifyRequest { request ->
-            // The server expects the auth date to be within a 3 minutes time window around the server time
-            // but sometimes the request time/auth date is off by a few seconds/milliseconds, therefore,
-            // to solve this, retry the request with a 1.5 minutes offset.
-            val epoch = (Clock.System.now().toEpochMilliseconds() / 1000) - 150
-            request.headers["X-Auth-Date"] = epoch.toString()
-            request.headers["Authorization"] = authHeader(epoch, authenticationInfo.key, authenticationInfo.secret)
+            if (request.url.pathSegments.drop(3)[0] != "value") {
+                // The server expects the auth date to be within a 3 minutes time window around the server time
+                // but sometimes the request time/auth date is off by a few seconds/milliseconds, therefore,
+                // to solve this, retry the request with a 1.5 minutes offset.
+                val epoch = (Clock.System.now().toEpochMilliseconds() / 1000) - 150
+                request.headers["X-Auth-Date"] = epoch.toString()
+                request.headers["Authorization"] = authHeader(epoch, authenticationInfo.key, authenticationInfo.secret)
+            }
         }
         retryIf(maxRetries) { _, httpResponse ->
             when {
