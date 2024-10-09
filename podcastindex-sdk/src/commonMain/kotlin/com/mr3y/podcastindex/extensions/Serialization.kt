@@ -8,6 +8,7 @@ import com.mr3y.podcastindex.model.Status
 import com.mr3y.podcastindex.model.Type
 import kotlinx.datetime.Instant
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.MapSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.descriptors.PrimitiveKind
@@ -15,6 +16,9 @@ import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.int
+import kotlinx.serialization.json.jsonPrimitive
 
 internal class InstantSerializer : KSerializer<Instant> {
 
@@ -110,6 +114,21 @@ internal class CategoriesSerializer : KSerializer<List<Category>> {
     override fun deserialize(decoder: Decoder): List<Category> = mapSerializer
         .deserialize(decoder)
         .map { (id, _) -> Category.entries.first { it.id == id } }
+
+    override fun serialize(encoder: Encoder, value: List<Category>) {
+        // Serialization isn't implemented right now as support for endpoints
+        // that allows writing/updating to the Index hasn't been added yet
+    }
+}
+
+internal class CategoriesListSerializer : KSerializer<List<Category>> {
+
+    private val listSerializer = ListSerializer(JsonObject.serializer())
+    override val descriptor: SerialDescriptor = listSerializer.descriptor
+
+    override fun deserialize(decoder: Decoder): List<Category> = listSerializer
+        .deserialize(decoder)
+        .map { jsonObj -> Category.entries.first { it.id == jsonObj["id"]!!.jsonPrimitive.int } }
 
     override fun serialize(encoder: Encoder, value: List<Category>) {
         // Serialization isn't implemented right now as support for endpoints
