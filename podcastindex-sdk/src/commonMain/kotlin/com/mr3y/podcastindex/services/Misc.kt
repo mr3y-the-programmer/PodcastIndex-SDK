@@ -5,8 +5,10 @@ import com.mr3y.podcastindex.extensions.parameterBoolean
 import com.mr3y.podcastindex.extensions.parameterLimit
 import com.mr3y.podcastindex.extensions.parameterList
 import com.mr3y.podcastindex.extensions.withErrorHandling
+import com.mr3y.podcastindex.model.CategoriesResult
 import com.mr3y.podcastindex.model.Category
 import com.mr3y.podcastindex.model.MultipleEpisodesResult
+import com.mr3y.podcastindex.model.StatsResult
 import com.mr3y.podcastindex.model.TrendingResult
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
@@ -55,5 +57,13 @@ public class Misc internal constructor(private val client: HttpClient) {
             parameterList("notcat", excludeCategories, transform = { it.id.toString() })
             parameterBoolean("fulltext", includeFullText)
         }
+    }
+
+    public suspend fun getCurrentStats(): StatsResult = withErrorHandling {
+        client.get("${PodcastIndexClient.BaseUrl}/stats/current")
+    }
+
+    public suspend fun getCategories(): CategoriesResult = withErrorHandling {
+        client.get("${PodcastIndexClient.BaseUrl}/categories/list")
     }
 }
