@@ -80,7 +80,7 @@ public class Value4Value(
     @SerialName(value = "model") public val model: Value4ValueModel,
     @SerialName(value = "destinations") public val destinations: List<Value4ValueDestination>,
     @SerialName(value = "title") public val title: String? = null,
-    @SerialName(value = "feedTitle") public val feedTitle: String? = null
+    @SerialName(value = "feedTitle") public val feedTitle: String? = null,
 )
 
 @Serializable

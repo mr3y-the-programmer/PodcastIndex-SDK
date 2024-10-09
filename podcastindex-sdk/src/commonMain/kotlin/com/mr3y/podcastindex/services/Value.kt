@@ -2,7 +2,6 @@ package com.mr3y.podcastindex.services
 
 import com.mr3y.podcastindex.PodcastIndexClient
 import com.mr3y.podcastindex.extensions.withErrorHandling
-import com.mr3y.podcastindex.model.MultipleEpisodesResult
 import com.mr3y.podcastindex.model.ValueFeedResult
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
