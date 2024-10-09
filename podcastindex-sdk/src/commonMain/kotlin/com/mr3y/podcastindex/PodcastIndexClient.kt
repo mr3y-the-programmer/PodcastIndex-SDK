@@ -8,6 +8,7 @@ import com.mr3y.podcastindex.extensions.installTimeoutPlugin
 import com.mr3y.podcastindex.services.Episodes
 import com.mr3y.podcastindex.services.Misc
 import com.mr3y.podcastindex.services.Podcasts
+import com.mr3y.podcastindex.services.Recent
 import com.mr3y.podcastindex.services.Search
 import io.ktor.client.HttpClient
 
@@ -60,6 +61,8 @@ public class PodcastIndexClient internal constructor(
     public val search: Search = Search(client)
 
     public val episodes: Episodes = Episodes(client)
+
+    public val recent: Recent = Recent(client)
 
     public val misc: Misc = Misc(client)
 
