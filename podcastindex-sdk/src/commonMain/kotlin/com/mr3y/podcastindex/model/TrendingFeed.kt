@@ -40,7 +40,7 @@ public class Stats(
     @SerialName(value = "feedsWithNewEpisodes10days") public val feedsWithNewEpisodes10days: Long,
     @SerialName(value = "feedsWithNewEpisodes30days") public val feedsWithNewEpisodes30days: Long,
     @SerialName(value = "feedsWithNewEpisodes90days") public val feedsWithNewEpisodes90days: Long,
-    @SerialName(value = "feedsWithValueBlocks") public val feedsWithValueBlocks: Long
+    @SerialName(value = "feedsWithValueBlocks") public val feedsWithValueBlocks: Long,
 )
 
 @Serializable
