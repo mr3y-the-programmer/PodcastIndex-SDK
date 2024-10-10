@@ -1,6 +1,7 @@
 package com.mr3y.podcastindex.extensions
 
 import com.mr3y.podcastindex.model.BadRequestException
+import com.mr3y.podcastindex.model.RateLimitExceededException
 import com.mr3y.podcastindex.model.UnknownException
 import io.ktor.client.call.body
 import io.ktor.client.statement.HttpResponse
@@ -18,6 +19,7 @@ internal suspend inline fun <reified T> withErrorHandling(block: () -> HttpRespo
             throw BadRequestException(description)
         }
         HttpStatusCode.Unauthorized -> throw IllegalStateException("You're Unauthenticated! Make sure to enter your authentication credentials correctly")
+        HttpStatusCode.TooManyRequests -> throw RateLimitExceededException("API rate limit reached. Try again later or contact PodcastIndex org support if you think there is a mistake.")
         else -> throw UnknownException(response.bodyAsText())
     }
 }
