@@ -8,6 +8,7 @@ import com.mr3y.podcastindex.model.Status
 import com.mr3y.podcastindex.model.Type
 import kotlinx.datetime.Instant
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.MapSerializer
 import kotlinx.serialization.builtins.serializer
@@ -17,6 +18,8 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.booleanOrNull
 import kotlinx.serialization.json.int
 import kotlinx.serialization.json.jsonPrimitive
 
@@ -131,6 +134,28 @@ internal class CategoriesListSerializer : KSerializer<List<Category>> {
         .map { jsonObj -> Category.entries.first { it.id == jsonObj["id"]!!.jsonPrimitive.int } }
 
     override fun serialize(encoder: Encoder, value: List<Category>) {
+        // Serialization isn't implemented right now as support for endpoints
+        // that allows writing/updating to the Index hasn't been added yet
+    }
+}
+
+internal class BooleanOrIntSerializer : KSerializer<Boolean> {
+
+    private val jsonPrimitiveSerializer = JsonPrimitive.serializer()
+    override val descriptor: SerialDescriptor = jsonPrimitiveSerializer.descriptor
+
+    override fun deserialize(decoder: Decoder): Boolean {
+        val primitive = jsonPrimitiveSerializer.deserialize(decoder)
+        return primitive.booleanOrNull ?: primitive.int.let {
+            when (it) {
+                1 -> true
+                0 -> false
+                else -> throw SerializationException("Can't transform given integer value to boolean: $it")
+            }
+        }
+    }
+
+    override fun serialize(encoder: Encoder, value: Boolean) {
         // Serialization isn't implemented right now as support for endpoints
         // that allows writing/updating to the Index hasn't been added yet
     }

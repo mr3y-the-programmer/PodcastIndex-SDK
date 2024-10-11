@@ -1,5 +1,6 @@
 package com.mr3y.podcastindex.model
 
+import com.mr3y.podcastindex.extensions.BooleanOrIntSerializer
 import com.mr3y.podcastindex.extensions.CategoriesSerializer
 import com.mr3y.podcastindex.extensions.InstantSerializer
 import com.mr3y.podcastindex.extensions.LockedSerializer
@@ -48,7 +49,7 @@ public class PodcastFeed(
     @SerialName(value = "itunesType") public val itunesType: String? = null,
     @SerialName(value = "generator") public val generator: String?,
     @SerialName(value = "language") public val language: String,
-    @SerialName(value = "explicit") public val explicit: Boolean? = null,
+    @SerialName(value = "explicit") @Serializable(BooleanOrIntSerializer::class) public val explicit: Boolean? = null,
     @SerialName(value = "type") @Serializable(TypeSerializer::class) public val type: Type,
     @SerialName(value = "medium") public val medium: String? = null,
     @SerialName(value = "dead") public val dead: Int,
