@@ -93,7 +93,7 @@ val result: MultiplePodcastsResult = client.search.forMusicPodcastsByTerm(term =
 ````
 </details>
 
-Similarly, accessing **Podcasts**, **Episodes** services/endpoints follows the same approach.
+Similarly, accessing other services/endpoints follows the same approach.
 
 ## Advanced
 - Enable logging to get better insights about outgoing requests which might be helpful for debugging (Default is false):
@@ -134,10 +134,10 @@ Some endpoints are still work-in-progress and not implemented yet (⌛)
 |                            | 🔰 Status |                         | 🔰 Status |
 |----------------------------|:---------:| ----------------------- | --------- |
 | **Search**                 |           | **Recent**              |           |
-| Search Podcasts            | ✔️        | Get Recent Episodes     | ⌛        |
-| Search Podcasts by Title   | ✔️        | Get Recent Feeds        | ⌛        |
-| Search Episodes by Person  | ✔️         | Get New Feeds           | ⌛        |
-| Search Music Podcasts      | ✔️         | Get Soundbites          | ⌛        |
+| Search Podcasts            | ✔️        | Get Recent Episodes     | ✔️        |
+| Search Podcasts by Title   | ✔️        | Get Recent Feeds        | ✔️        |
+| Search Episodes by Person  | ✔️         | Get New Feeds           | ✔️        |
+| Search Music Podcasts      | ✔️         | Get Soundbites          | ✔️        |
 |                            |           |                         |           |
 | **Podcast**                |           | **Episodes**            |           |
 | Get Podcast By Feed ID     | ✔️        | Get Episodes By Feed ID | ✔️        |
@@ -150,11 +150,11 @@ Some endpoints are still work-in-progress and not implemented yet (⌛)
 | Get Dead Podcasts          | ⌛        | Get Episodes by Feed GUID | ✔️         |
 |                            |           |                         |           |
 | **Apple Replacement**      |           | **Value**               |           |
-| Search on Apple iTunes     | ⌛        | Get Value By Feed ID    | ⌛        |
-| Lookup on Apple iTunes     | ⌛        | Get Value By Feed URL   | ⌛        |
+| Search on Apple iTunes     | ⌛        | Get Value By Feed ID    | ✔️        |
+| Lookup on Apple iTunes     | ⌛        | Get Value By Feed URL   | ✔️        |
 |                            |           |                         |           |
 | **Stats**                  |           | **Category**            |           |
-| Get Current Stats          | ⌛        | Get Categories          | ⌛        |
+| Get Current Stats          | ✔️        | Get Categories          | ✔️        |
 |                            |           |                         |           |
 | **Hub**                    |           | **Add Service**         |          |
 | Notify Changes By Feed Id  | ⌛        | ...                     | ⌛         |
