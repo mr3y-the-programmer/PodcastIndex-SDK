@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.3.1 - 2024-10-12
+
+- Fixed: Serialization crash when podcastFeed's `explicit` is represented as an Int not a Boolean.
+
 ## v0.3.0 - 2024-10-11
 
 - Added: Value service is now supported.
