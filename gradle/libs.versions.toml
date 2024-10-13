@@ -4,24 +4,33 @@ kotlin = "2.0.20"
 jdkTarget = "8"
 jvmToolchain = "21"
 kotlinTarget = "1.9.0"
-ktor = "2.3.12"
+ktor2 = "2.3.12"
+ktor3 = "3.0.0"
 kotlinx-serialization = "1.7.1"
 kotlinx-datetime = "0.6.1"
 poko = "0.17.0"
 kermit = "2.0.4"
 spotless = "7.0.0.BETA2"
 vanniktech-maven = "0.29.0"
+annotation = "1.8.2"
 
 [libraries]
-ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
-ktor-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
-ktor-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
-ktor-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
-ktor-kotlinx-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
-ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+ktor2-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor2" }
+ktor2-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor2" }
+ktor2-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor2" }
+ktor2-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor2" }
+ktor2-kotlinx-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor2" }
+ktor2-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor2" }
+ktor3-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor3" }
+ktor3-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor3" }
+ktor3-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor3" }
+ktor3-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor3" }
+ktor3-kotlinx-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor3" }
+ktor3-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor3" }
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
+annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
 
 [plugins]
 

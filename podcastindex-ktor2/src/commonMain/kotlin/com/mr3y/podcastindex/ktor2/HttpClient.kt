@@ -1,4 +1,4 @@
-package com.mr3y.podcastindex.extensions
+package com.mr3y.podcastindex.ktor2
 
 import com.mr3y.podcastindex.Authentication
 import io.ktor.client.HttpClientConfig

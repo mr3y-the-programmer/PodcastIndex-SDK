@@ -42,5 +42,6 @@ toolchainManagement {
 }
 
 includeBuild("convention-plugins")
-include(":podcastindex-sdk")
-
+include(":podcastindex-sdk-base")
+include(":podcastindex-ktor3")
+include(":podcastindex-ktor2")
