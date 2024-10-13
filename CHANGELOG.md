@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.3.5 - 2024-10-14
+
+- BREAKING: Starting from this version support for Ktor 3 has been added alongside Ktor 2, and as a part of this change now there are 2 mutually exclusive different artifacts: ktor2, ktor3 respectively. Use the one that matches ktor version used in your project
+```kotlin
+// Ktor 2
+implementation("io.github.mr3y-the-programmer:podcastindex-sdk-ktor2:0.3.5")
+// Or Ktor 3
+implementation("io.github.mr3y-the-programmer:podcastindex-sdk-ktor3:0.3.5")
+```
+
 ## v0.3.1 - 2024-10-12
 
 - Fixed: Serialization crash when podcastFeed's `explicit` is represented as an Int not a Boolean.
