@@ -1,6 +1,6 @@
 # PodcastIndex-SDK
 
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.mr3y-the-programmer/podcastindex-sdk?label=Maven%20Central)](https://search.maven.org/artifact/io.github.mr3y-the-programmer/podcastindex-sdk)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.mr3y-the-programmer/podcastindex-sdk-base?label=Maven%20Central)](https://search.maven.org/artifact/io.github.mr3y-the-programmer/podcastindex-sdk-base)
 ![Github Actions](https://github.com/mr3y-the-programmer/PodcastIndex-SDK/actions/workflows/build.yml/badge.svg)
 ![badge-android](https://img.shields.io/badge/platform-android-6EDB8D.svg?style=flat)
 ![badge-ios](https://img.shields.io/badge/platform-ios-CDCDCD.svg?style=flat)
@@ -36,20 +36,26 @@ In Kotlin Multiplatform projects, add the dependency:
 ```kotlin
 commonMain {
     dependencies {
-        implementation("io.github.mr3y-the-programmer:podcastindex-sdk:<latest-version>")
+        // If you're using Ktor 2
+        implementation("io.github.mr3y-the-programmer:podcastindex-sdk-ktor2:<latest-version>")
+        // Or if you're using Ktor 3
+        implementation("io.github.mr3y-the-programmer:podcastindex-sdk-ktor3:<latest-version>")
     }
 }
 ```
 Or in a single-platform project:
 ```kotlin
 dependencies {
-   implementation("io.github.mr3y-the-programmer:podcastindex-sdk:<latest-version>")
+    // If you're using Ktor 2
+    implementation("io.github.mr3y-the-programmer:podcastindex-sdk-ktor2:<latest-version>")
+    // Or if you're using Ktor 3
+    implementation("io.github.mr3y-the-programmer:podcastindex-sdk-ktor3:<latest-version>")
 }
 ```
 **Compatibility**:
    - Java 8+.
    - Kotlin 1.9+.
-   - Ktor 2.
+   - Ktor 2 & 3.
 
 ## How to use
 1. Initialize client instance by calling `PodcastIndexClient` with your credentials:
