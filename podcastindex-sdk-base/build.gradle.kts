@@ -10,6 +10,9 @@ plugins {
     alias(libs.plugins.vanniktech.maven)
 }
 
+val GROUP: String by project
+group = GROUP
+
 kotlin {
     explicitApi()
     jvmToolchain(libs.versions.jvmToolchain.get().toInt())
@@ -38,21 +41,18 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.ktor.core)
-            implementation(libs.ktor.content.negotiation)
-            implementation(libs.ktor.kotlinx.serialization)
-            implementation(libs.ktor.logging)
-            implementation(libs.kermit)
+            implementation(libs.ktor2.core)
             implementation(libs.kotlinx.serialization)
             implementation(libs.kotlinx.datetime)
+            implementation(libs.annotation)
         }
 
         jvmMain.dependencies {
-            implementation(libs.ktor.okhttp)
+            implementation(libs.ktor2.okhttp)
         }
 
         iosMain.dependencies {
-            implementation(libs.ktor.darwin)
+            implementation(libs.ktor2.darwin)
         }
 
         commonTest.dependencies {
