@@ -37,6 +37,6 @@ public fun PodcastIndexClient(
             if (config.enableTimeout) {
                 installTimeoutPlugin(config.defaultTimeout)
             }
-        }
+        },
     )
 }

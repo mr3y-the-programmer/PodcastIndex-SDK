@@ -13,7 +13,9 @@ import io.ktor.client.HttpClientConfig
 /**
  * PodcastIndexClient instance responsible for interacting with different PodcastIndex API endpoints.
  */
-public class PodcastIndexClient @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP) constructor(
+public class PodcastIndexClient
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+constructor(
     private val httpClientConfig: HttpClientConfig<*>.() -> Unit,
 ) {
 
