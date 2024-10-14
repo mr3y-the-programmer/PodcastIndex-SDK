@@ -1,6 +1,5 @@
 package com.mr3y.podcastindex.ktor2
 
-import com.mr3y.podcastindex.Authentication
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.HttpTimeout
@@ -17,17 +16,17 @@ import kotlinx.datetime.Clock
 import kotlinx.serialization.json.Json
 import co.touchlab.kermit.Logger as KermitLogger
 
-internal fun HttpClientConfig<*>.installAuthenticationPlugin(authenticationInfo: Authentication) {
+internal fun HttpClientConfig<*>.installAuthenticationPlugin(key: String, secret: String, userAgent: String) {
     // Add the necessary authentication headers to every request going out to PodcastIndex endpoints
     val requestAuthenticationPlugin = createClientPlugin("requestAuthenticatorPlugin") {
         onRequest { request, _ ->
             if (request.url.pathSegments.drop(3)[0] != "value") {
                 request.headers {
                     val epoch = (Clock.System.now().toEpochMilliseconds() / 1000)
-                    append("User-Agent", authenticationInfo.userAgent)
+                    append("User-Agent", userAgent)
                     append("X-Auth-Date", epoch.toString())
-                    append("X-Auth-Key", authenticationInfo.key)
-                    append("Authorization", authHeader(epoch, authenticationInfo.key, authenticationInfo.secret))
+                    append("X-Auth-Key", key)
+                    append("Authorization", authHeader(epoch, key, secret))
                 }
             }
         }
@@ -35,7 +34,7 @@ internal fun HttpClientConfig<*>.installAuthenticationPlugin(authenticationInfo:
     install(requestAuthenticationPlugin)
 }
 
-internal fun HttpClientConfig<*>.installRetryPlugin(authenticationInfo: Authentication, maxRetries: Int) {
+internal fun HttpClientConfig<*>.installRetryPlugin(key: String, secret: String, maxRetries: Int) {
     install(HttpRequestRetry) {
         modifyRequest { request ->
             if (request.url.pathSegments.drop(3)[0] != "value") {
@@ -44,7 +43,7 @@ internal fun HttpClientConfig<*>.installRetryPlugin(authenticationInfo: Authenti
                 // to solve this, retry the request with a 1.5 minutes offset.
                 val epoch = (Clock.System.now().toEpochMilliseconds() / 1000) - 150
                 request.headers["X-Auth-Date"] = epoch.toString()
-                request.headers["Authorization"] = authHeader(epoch, authenticationInfo.key, authenticationInfo.secret)
+                request.headers["Authorization"] = authHeader(epoch, key, secret)
             }
         }
         retryIf(maxRetries) { _, httpResponse ->

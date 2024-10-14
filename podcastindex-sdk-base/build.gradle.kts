@@ -44,7 +44,6 @@ kotlin {
             implementation(libs.ktor2.core)
             implementation(libs.kotlinx.serialization)
             implementation(libs.kotlinx.datetime)
-            implementation(libs.annotation)
         }
 
         jvmMain.dependencies {

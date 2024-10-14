@@ -1,6 +1,5 @@
 package com.mr3y.podcastindex
 
-import androidx.annotation.RestrictTo
 import com.mr3y.podcastindex.services.Episodes
 import com.mr3y.podcastindex.services.Misc
 import com.mr3y.podcastindex.services.Podcasts
@@ -14,7 +13,7 @@ import io.ktor.client.HttpClientConfig
  * PodcastIndexClient instance responsible for interacting with different PodcastIndex API endpoints.
  */
 public class PodcastIndexClient
-@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+@InternalPodcastIndexApi
 constructor(
     private val httpClientConfig: HttpClientConfig<*>.() -> Unit,
 ) {

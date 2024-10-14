@@ -1,9 +1,7 @@
 package com.mr3y.podcastindex
 
-import androidx.annotation.RestrictTo
-
 @DslMarker
-@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+@InternalPodcastIndexApi
 public annotation class PodcastIndexConfigDsl
 
 /**
@@ -37,10 +35,3 @@ public class PodcastIndexClientConfig {
      */
     public var defaultTimeout: Long = 10_000
 }
-
-@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
-public data class Authentication(
-    val key: String,
-    val secret: String,
-    val userAgent: String,
-)
