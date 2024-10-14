@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.3.6 - 2024-10-15
+
+- BREAKING: Remove `Authentication` from Public API surface. this shouldn't have been used by anyone, it was just used internally, and its usages are refactored now.
+- Prompt Users to Opt-in to call `PodcastIndexClient` constructor & `@PodcastIndexConfigDsl` as these aren't supposed to be used by users, and they're just public for technical limitations.
+
 ## v0.3.5 - 2024-10-14
 
 - BREAKING: Starting from this version support for Ktor 3 has been added alongside Ktor 2, and as a part of this change the old `io.github.mr3y-the-programmer:podcastindex-sdk` artifact has been replaced by 2 mutually exclusive artifacts: ktor2, ktor3 respectively. 
