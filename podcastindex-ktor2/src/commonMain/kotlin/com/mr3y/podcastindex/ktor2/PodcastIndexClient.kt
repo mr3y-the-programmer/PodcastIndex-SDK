@@ -1,6 +1,5 @@
 package com.mr3y.podcastindex.ktor2
 
-import com.mr3y.podcastindex.Authentication
 import com.mr3y.podcastindex.PodcastIndexClient
 import com.mr3y.podcastindex.PodcastIndexClientConfig
 import com.mr3y.podcastindex.PodcastIndexConfigDsl
@@ -24,12 +23,11 @@ public fun PodcastIndexClient(
     block: PodcastIndexClientConfig.() -> Unit = {},
 ): PodcastIndexClient {
     require(userAgent.isNotBlank()) { "User agent cannot be blank" }
-    val auth = Authentication(authKey, authSecret, userAgent)
     val config = PodcastIndexClientConfig().apply { block() }
     return PodcastIndexClient(
         httpClientConfig = {
-            installAuthenticationPlugin(auth)
-            installRetryPlugin(auth, maxRetries = config.maxRetries)
+            installAuthenticationPlugin(authKey, authSecret, userAgent)
+            installRetryPlugin(authKey, authSecret, maxRetries = config.maxRetries)
             installSerializationPlugin()
             if (config.enableLogging) {
                 installLoggingPlugin(config.loggingTag)
