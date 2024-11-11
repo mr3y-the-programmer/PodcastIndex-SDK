@@ -25,7 +25,7 @@ public fun PodcastIndexClient(
     require(userAgent.isNotBlank()) { "User agent cannot be blank" }
     val config = PodcastIndexClientConfig().apply { block() }
     return PodcastIndexClient(
-        httpClientConfig = {
+        defaultHttpClientConfig = {
             installAuthenticationPlugin(authKey, authSecret, userAgent)
             installRetryPlugin(authKey, authSecret, maxRetries = config.maxRetries)
             installSerializationPlugin()
@@ -36,5 +36,6 @@ public fun PodcastIndexClient(
                 installTimeoutPlugin(config.defaultTimeout)
             }
         },
+        podcastIndexClientConfig = config
     )
 }
