@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.4.0 - 2024-11-13
+
+- Added: Allow customization of Http client configuration. Thanks to @msimonides for contributing this feature.
+- Make Ktor client dependency available automatically on classpath using `api` instead of `implementation` in previous releases.
+- Clarify Opt-in annotation message.
+
 ## v0.3.6 - 2024-10-15
 
 - BREAKING: Remove `Authentication` from Public API surface. this shouldn't have been used by anyone, it was just used internally, and its usages are refactored now.
