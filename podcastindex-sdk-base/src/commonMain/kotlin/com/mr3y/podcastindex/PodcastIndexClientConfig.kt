@@ -15,8 +15,7 @@ public annotation class PodcastIndexConfigDsl
 @PodcastIndexConfigDsl
 public class PodcastIndexClientConfig {
 
-    internal var httpClientBuilder: (() -> HttpClient) =
-        { HttpClient(defaultHttpClientEngineFactory()) }
+    internal var httpClientBuilder: () -> HttpClient = { HttpClient(defaultHttpClientEngineFactory()) }
 
     /**
      * Maximum number of retries for failed requests before giving up. Default is 3.

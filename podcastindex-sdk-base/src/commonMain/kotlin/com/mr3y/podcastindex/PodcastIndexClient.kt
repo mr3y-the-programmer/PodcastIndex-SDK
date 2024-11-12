@@ -18,8 +18,7 @@ constructor(
     defaultHttpClientConfig: HttpClientConfig<*>.() -> Unit,
     podcastIndexClientConfig: PodcastIndexClientConfig
 ) {
-    private val client: HttpClient =
-        podcastIndexClientConfig.httpClientBuilder().config(defaultHttpClientConfig)
+    private val client: HttpClient = podcastIndexClientConfig.httpClientBuilder().config(defaultHttpClientConfig)
 
     public val podcasts: Podcasts = Podcasts(client)
 

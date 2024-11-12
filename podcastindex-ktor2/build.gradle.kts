@@ -39,7 +39,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.ktor2.core)
+            api(libs.ktor2.core)
             implementation(libs.ktor2.content.negotiation)
             implementation(libs.ktor2.kotlinx.serialization)
             implementation(libs.ktor2.logging)
