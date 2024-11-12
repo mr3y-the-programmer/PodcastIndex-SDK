@@ -2,7 +2,7 @@
 
 ## v0.4.0 - 2024-11-13
 
-- Added: Allow customization of Http client configuration. Thanks to @msimonides for contributing this feature.
+- Added: Allow customization of Http client configuration. Thanks to [msimonides](https://github.com/msimonides) for contributing this feature.
 - Make Ktor client dependency available automatically on classpath using `api` instead of `implementation` in previous releases.
 - Clarify Opt-in annotation message.
 
