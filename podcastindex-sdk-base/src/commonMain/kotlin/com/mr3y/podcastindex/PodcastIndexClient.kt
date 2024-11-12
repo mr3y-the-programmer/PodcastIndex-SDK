@@ -16,7 +16,7 @@ public class PodcastIndexClient
 @InternalPodcastIndexApi
 constructor(
     defaultHttpClientConfig: HttpClientConfig<*>.() -> Unit,
-    podcastIndexClientConfig: PodcastIndexClientConfig
+    podcastIndexClientConfig: PodcastIndexClientConfig,
 ) {
     private val client: HttpClient = podcastIndexClientConfig.httpClientBuilder().config(defaultHttpClientConfig)
 

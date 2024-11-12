@@ -51,7 +51,7 @@ public class PodcastIndexClientConfig {
      */
     public fun <T : HttpClientEngineConfig> httpClient(
         engineFactory: HttpClientEngineFactory<T>,
-        block: HttpClientConfig<T>.() -> Unit = {}
+        block: HttpClientConfig<T>.() -> Unit = {},
     ) {
         httpClientBuilder = {
             HttpClient(engineFactory, block)

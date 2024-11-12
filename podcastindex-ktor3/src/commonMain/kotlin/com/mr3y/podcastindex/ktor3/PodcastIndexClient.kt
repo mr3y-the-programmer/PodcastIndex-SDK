@@ -36,6 +36,6 @@ public fun PodcastIndexClient(
                 installTimeoutPlugin(config.defaultTimeout)
             }
         },
-        podcastIndexClientConfig = config
+        podcastIndexClientConfig = config,
     )
 }
