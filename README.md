@@ -134,6 +134,14 @@ val client = PodcastIndexClient(...) {
     defaultTimeout = 5_000L // 5 seconds
 }
 ```
+- Customize or choose a different HTTP client:
+```kotlin
+val client = PodcastIndexClient(...) {
+    httpClient(Okhttp) {
+        // Customize OkHttp engine configuration
+    }
+}
+```
 
 ## Support table
 Some endpoints are still work-in-progress and not implemented yet (⌛)
