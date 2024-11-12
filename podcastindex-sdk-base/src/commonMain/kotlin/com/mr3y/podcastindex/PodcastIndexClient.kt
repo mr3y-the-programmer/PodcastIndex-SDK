@@ -15,12 +15,11 @@ import io.ktor.client.HttpClientConfig
 public class PodcastIndexClient
 @InternalPodcastIndexApi
 constructor(
-    private val httpClientConfig: HttpClientConfig<*>.() -> Unit,
+    defaultHttpClientConfig: HttpClientConfig<*>.() -> Unit,
+    podcastIndexClientConfig: PodcastIndexClientConfig
 ) {
-
-    private val client: HttpClient = HttpClient(defaultHttpClientEngineFactory()) {
-        httpClientConfig()
-    }
+    private val client: HttpClient =
+        podcastIndexClientConfig.httpClientBuilder().config(defaultHttpClientConfig)
 
     public val podcasts: Podcasts = Podcasts(client)
 
