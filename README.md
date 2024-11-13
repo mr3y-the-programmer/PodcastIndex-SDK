@@ -134,11 +134,14 @@ val client = PodcastIndexClient(...) {
     defaultTimeout = 5_000L // 5 seconds
 }
 ```
-- Customize or choose a different HTTP client:
+- Customize or choose a different HTTP client which is useful if you use a certain HTTP client instance in your app with special configuration and you want to make the SDK reuse the same instance:
 ```kotlin
 val client = PodcastIndexClient(...) {
     httpClient(Okhttp) {
-        // Customize OkHttp engine configuration
+        // Customize OkHttp client configuration
+        engine {
+            preconfigured = okHttpClientInstance
+        }
     }
 }
 ```
