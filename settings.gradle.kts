@@ -1,4 +1,5 @@
 rootProject.name = "PodcastIndex-SDK"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
     repositories {

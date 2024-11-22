@@ -30,6 +30,9 @@ ktor3-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor3" 
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
+# Convention plugins dependencies
+spotless-gradle = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
+kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 
 [plugins]
 
@@ -38,3 +41,5 @@ kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", vers
 poko = { id = "dev.drewhamilton.poko", version.ref = "poko" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 vanniktech-maven = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-maven" }
+compatibility-conventions = { id = "conventions.compatibility", version = "unspecified" }
+spotless-conventions = { id = "conventions.spotless", version = "unspecified" }
