@@ -35,6 +35,10 @@
       "matchPackageNames": [
         "io.ktor{/,}**"
       ]
+    },
+    {
+      "matchPackageNames": ["conventions.**"],
+      "enabled": false
     }
   ]
 }
