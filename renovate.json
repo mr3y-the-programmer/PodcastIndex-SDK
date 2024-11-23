@@ -1,6 +1,40 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "config:base",
+    "group:all",
+    ":dependencyDashboard",
+    "schedule:weekly"
+  ],
+  "baseBranches": [
+    "main"
+  ],
+  "labels": [
+    "dependencies"
+  ],
+  "packageRules": [
+    {
+      "matchPackagePrefixes": [
+        "dev.drewhamilton.poko",
+        "org.jetbrains.kotlin"
+      ],
+      "groupName": "kotlin"
+    },
+    {
+      "matchPackagePrefixes": [
+        "io.ktor"
+      ],
+      "matchCurrentValue": "2.*",
+      "allowedVersions": "/^2.[0-9].[0-9]$/",
+      "groupName": "ktor2"
+    },
+    {
+      "matchPackagePrefixes": [
+        "io.ktor"
+      ],
+      "matchCurrentValue": "3.*",
+      "allowedVersions": ">=3.0.0",
+      "groupName": "ktor3"
+    }
   ]
 }
