@@ -19,31 +19,22 @@
         "org.jetbrains.kotlin"
       ],
       "groupName": "kotlin"
-    }
-  ],
-  "regexManagers": [
+    },
     {
-      "fileMatch": ["libs\\.versions\\.toml$"],
-      "matchStrings": [
-        "(?<depName>[a-z0-9\\-]+) = \\\"(?<currentValue>\\d+\\.\\d+\\.\\d+)\\\""
+      "matchPackagePrefixes": [
+        "io.ktor"
       ],
-      "datasourceTemplate": "gradle",
-      "versioningTemplate": "semver",
-      "extractVersionTemplate": "{{currentValue}}",
-      "packageRules": [
-        {
-          "matchPackagePrefixes": ["io.ktor"],
-          "matchDatasources": ["gradle"],
-          "matchCurrentVersion": "^3\\.",
-          "allowedVersions": "^3\\..*"
-        },
-        {
-          "matchPackagePrefixes": ["io.ktor"],
-          "matchDatasources": ["gradle"],
-          "matchCurrentVersion": "^2\\.",
-          "allowedVersions": "^2\\..*"
-        }
-      ]
+      "matchCurrentValue": "2.*",
+      "allowedVersions": "/^2.[0-9].[0-9]$/",
+      "groupName": "ktor2"
+    },
+    {
+      "matchPackagePrefixes": [
+        "io.ktor"
+      ],
+      "matchCurrentValue": "3.*",
+      "allowedVersions": ">=3.0.0",
+      "groupName": "ktor3"
     }
   ]
 }
