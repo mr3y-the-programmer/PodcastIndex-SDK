@@ -1,6 +1,6 @@
 [versions]
 
-kotlin = "2.0.21"
+kotlin = "2.1.0"
 jdkTarget = "8"
 jvmToolchain = "21"
 kotlinTarget = "1.9.0"
@@ -8,7 +8,7 @@ ktor2 = "2.3.13"
 ktor3 = "3.0.1"
 kotlinx-serialization = "1.7.3"
 kotlinx-datetime = "0.6.1"
-poko = "0.17.2"
+poko = "0.18.0"
 kermit = "2.0.5"
 spotless = "7.0.0.BETA4"
 vanniktech-maven = "0.30.0"
