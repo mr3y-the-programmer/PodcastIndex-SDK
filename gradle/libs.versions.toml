@@ -9,9 +9,9 @@ ktor3 = "3.0.1"
 kotlinx-serialization = "1.8.1"
 kotlinx-datetime = "0.6.2"
 poko = "0.18.6"
-kermit = "2.0.5"
-spotless = "7.0.3"
-vanniktech-maven = "0.31.0"
+kermit = "2.0.6"
+spotless = "7.0.4"
+vanniktech-maven = "0.33.0"
 
 [libraries]
 ktor2-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor2" }
